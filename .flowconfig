@@ -1,0 +1,8 @@
+[ignore]
+dist/
+
+[include]
+src/
+
+[version]
+^0.33.0

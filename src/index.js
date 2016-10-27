@@ -1,3 +1,8 @@
-const a = 1;
+/* @flow */
+import data from './data';
 
-console.log(`foo ${a}`);
+function add (a: number, b: number): number {
+  return a + b;
+}
+
+console.log(`${add(data, 2)}`);
