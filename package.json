@@ -25,5 +25,9 @@
     "eslint-plugin-standard": "^2.0.1",
     "flow-bin": "^0.33.0",
     "nodemon": "^1.11.0"
+  },
+  "dependencies": {
+    "pretty-error": "^2.0.2",
+    "source-map-support": "^0.4.5"
   }
 }

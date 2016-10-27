@@ -1,1 +1,3 @@
-require('./dist');
+require('source-map-support').install()
+require('pretty-error').start()
+require('./dist')
