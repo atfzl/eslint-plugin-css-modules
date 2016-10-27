@@ -1,0 +1,18 @@
+{
+  "name": "node-babel-boilerplate",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon",
+    "watch": "babel src -d dist --watch"
+  },
+  "author": "Atif Afzal",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-cli": "^6.18.0",
+    "babel-preset-node6": "^11.0.0",
+    "eslint": "^3.8.1",
+    "nodemon": "^1.11.0"
+  }
+}
