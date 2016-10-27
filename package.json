@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon --quiet",
-    "watch": "babel src -d dist --watch"
+    "watch": "babel src -d dist --watch",
+    "build": "babel src -d dist",
+    "prod": "node index.js"
   },
   "author": "Atif Afzal",
   "license": "ISC",
