@@ -28,10 +28,10 @@
     "nodemon": "^1.11.0"
   },
   "dependencies": {
+    "gonzales-pe": "^4.0.3",
     "lodash": "^4.17.2",
     "node-sass": "^3.13.0",
     "pretty-error": "^2.0.2",
-    "sass-thematic": "^2.0.4",
     "source-map-support": "^0.4.5"
   }
 }

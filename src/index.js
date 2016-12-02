@@ -1,15 +1,20 @@
 /* @flow */
-import thematic from 'sass-thematic';
+import gonzales from 'gonzales-pe';
 import path from 'path';
 import util from 'util';
 import fp from 'lodash/fp';
+import fs from 'fs';
 import Debug from 'debug';
 
 const debug = Debug('import-style');
 
-const ast = thematic.parseASTSync({
-  file: path.resolve(__dirname, '../data/foo.scss')
-});
+const fileContent = fs.readFileSync(
+  path.resolve(__dirname, '../data/foo.scss')
+);
+
+const ast = gonzales.parse(
+  fileContent.toString(), { syntax: 'scss' }
+);
 
 type NodeType = {
   type: string,
@@ -28,22 +33,9 @@ type NodeType = {
 const getStyleClasses = (Node: NodeType): Array<string> => {
   const classes: Array<NodeType> = [];
 
-  traverse(ast);
-
-  function traverse (Node: NodeType) {
-    if (!Array.isArray(Node.content)) {
-      return;
-    }
-
-    if (Node.type === 'class') {
-      classes.push(Node);
-      return;
-    }
-
-    for (let i = 0; i < Node.content.length; ++i) {
-      traverse(Node.content[i]);
-    }
-  }
+  ast.traverseByType('class', (node) => {
+    classes.push(node);
+  });
 
   const getClassNames = fp.compose(
     fp.flatMap('content'),
