@@ -13,6 +13,8 @@
     "node": true
   },
   "rules": {
-    "semi": [1, "always"]
+    "semi": [1, "always"],
+    "camelcase": 0,
+    "comma-dangle": 0
   }
 }

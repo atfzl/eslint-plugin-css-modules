@@ -1,5 +1,5 @@
 {
-  "name": "babel-node6",
+  "name": "eslint-plugin-import-css-modules",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -9,6 +9,14 @@
     "build": "babel lib -d build",
     "prod": "node index.js"
   },
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "keywords": [
+    "eslint",
+    "eslintplugin",
+    "eslint-plugin"
+  ],
   "author": "Atif Afzal",
   "license": "ISC",
   "devDependencies": {
@@ -17,6 +25,7 @@
     "babel-plugin-syntax-flow": "^6.18.0",
     "babel-plugin-transform-flow-strip-types": "^6.18.0",
     "babel-preset-node6": "^11.0.0",
+    "babel-preset-stage-1": "^6.16.0",
     "debug": "^2.3.3",
     "eslint": "^3.8.1",
     "eslint-config-standard": "^6.2.1",

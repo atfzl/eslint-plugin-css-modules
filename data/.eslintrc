@@ -1,0 +1,9 @@
+{
+  "parser": "babel-eslint",
+  "plugins": [
+    "import-css-modules"
+  ],
+  "rules": {
+    "import-css-modules/no_unresolved": 2
+  }
+}

@@ -1,5 +1,8 @@
 {
-  "presets": ["node6"],
+  "presets": [
+    "node6",
+    "stage-1"
+  ],
   "plugins": [
     "syntax-flow",
     "transform-flow-strip-types"
