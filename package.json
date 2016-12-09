@@ -6,7 +6,7 @@
   "scripts": {
     "watch": "babel lib -d build --watch",
     "build": "babel lib -d build",
-    "test": "nodemon --quiet --exec eslint data/index.js"
+    "test": "nodemon --quiet --exec eslint example/index.js"
   },
   "engines": {
     "node": ">=4.0.0"
