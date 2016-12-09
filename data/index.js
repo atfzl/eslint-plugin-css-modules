@@ -1,10 +1,11 @@
 import s from './foo.scss';
-import util from 'util';
-import { get } from 'lodash';
+import m from './bar.css';
 
 const foo = () => {
+  const cls = s.foo || m.bar;
+
   return (
-    <div className={get(s.cartInfo, util)}>
+    <div className={`${s.cartInfo} ${cls}`}>
       foo
     </div>
   );

@@ -1,5 +1,5 @@
 {
-  "name": "eslint-plugin-import-css-modules",
+  "name": "eslint-plugin-css-modules",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",

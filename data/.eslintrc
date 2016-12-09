@@ -1,9 +1,9 @@
 {
   "parser": "babel-eslint",
   "plugins": [
-    "import-css-modules"
+    "css-modules"
   ],
   "rules": {
-    "import-css-modules/no_unresolved": 2
+    "css-modules/no-absent-class": 2
   }
 }
