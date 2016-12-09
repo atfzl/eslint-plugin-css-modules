@@ -28,7 +28,7 @@ npm i --save-dev eslint-plugin-css-modules
 
 ## Screen Shot
 
-![ScreenShot](./screenshots/screenshot2.png)
+![ScreenShot](https://raw.githubusercontent.com/atfzl/eslint-plugin-css-modules/master/screenshots/screenshot2.png)
 
 ```
   1:8   error  Unused classes found: container, button  css-modules/no-unused-or-extra-class

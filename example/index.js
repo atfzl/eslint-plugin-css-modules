@@ -1,7 +1,7 @@
 import s from './foo.scss';
 
 const component = () => {
-  const cls = s.containr;
+  const cls = s['containr'];
 
   return (
     <div className={`${s.foo}`}>
