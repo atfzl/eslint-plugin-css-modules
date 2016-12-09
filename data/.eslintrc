@@ -4,6 +4,6 @@
     "css-modules"
   ],
   "rules": {
-    "css-modules/no-absent-class": 2
+    "css-modules/no-unused-or-extra-class": 2
   }
 }
