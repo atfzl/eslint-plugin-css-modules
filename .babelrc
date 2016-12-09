@@ -1,6 +1,6 @@
 {
   "presets": [
-    "node6",
+    "es2015",
     "stage-1"
   ],
   "plugins": [

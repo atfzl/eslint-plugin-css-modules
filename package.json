@@ -1,16 +1,15 @@
 {
   "name": "eslint-plugin-css-modules",
   "version": "1.0.0",
-  "description": "",
+  "description": "Checks that you are using the existent css/scss classes, no less no more",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon --quiet",
     "watch": "babel lib -d build --watch",
     "build": "babel lib -d build",
-    "prod": "node index.js"
+    "test": "nodemon --quiet --exec eslint data/index.js"
   },
   "engines": {
-    "node": ">=0.10.0"
+    "node": ">=4.0.0"
   },
   "keywords": [
     "eslint",
@@ -19,14 +18,16 @@
   ],
   "author": "Atif Afzal",
   "license": "ISC",
+  "peerDependencies": {
+    "eslint": ">=3.0.0"
+  },
   "devDependencies": {
     "babel-cli": "^6.18.0",
     "babel-eslint": "^7.1.0",
     "babel-plugin-syntax-flow": "^6.18.0",
     "babel-plugin-transform-flow-strip-types": "^6.18.0",
-    "babel-preset-node6": "^11.0.0",
+    "babel-preset-es2015": "^6.18.0",
     "babel-preset-stage-1": "^6.16.0",
-    "debug": "^2.3.3",
     "eslint": "^3.8.1",
     "eslint-config-standard": "^6.2.1",
     "eslint-plugin-flowtype": "^2.25.0",
@@ -39,8 +40,6 @@
   "dependencies": {
     "gonzales-pe": "^4.0.3",
     "lodash": "^4.17.2",
-    "node-sass": "^3.13.0",
-    "pretty-error": "^2.0.2",
-    "source-map-support": "^0.4.5"
+    "node-sass": "^3.13.0"
   }
 }

@@ -1,9 +1,8 @@
 {
-  "parser": "babel-eslint",
   "plugins": [
     "css-modules"
   ],
-  "rules": {
-    "css-modules/no-unused-or-extra-class": 2
-  }
+  "extends": [
+    "plugin:css-modules/recommended"
+  ]
 }
