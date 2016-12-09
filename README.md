@@ -25,3 +25,34 @@ npm i --save-dev eslint-plugin-css-modules
   ]
 }
 ```
+
+## Screen Shot
+
+js:
+![ScreenShot](./screenshots/screenshot1.png)
+
+```
+  1:8   error  Unused classes found: container, button  css-modules/no-unused-or-extra-class
+  4:17  error  Class 'containr' not found               css-modules/no-unused-or-extra-class
+  7:26  error  Class 'foo' not found                    css-modules/no-unused-or-extra-class
+```
+
+scss:
+
+```scss
+.container {
+  width: 116px;
+
+  i {
+    font-size: 2.2rem;
+  }
+
+  .button {
+    padding: 7px 0 0 5px;
+  }
+}
+
+.footer {
+  color: cyan;
+}
+```

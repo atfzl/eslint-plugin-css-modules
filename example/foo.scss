@@ -1,27 +1,15 @@
-.foo {
+.container {
   width: 116px;
-  left: 108px;
-  top: -12px;
-  position: absolute;
-  display: inline-block;
-  margin-top: 6px;
-  cursor: pointer;
 
   i {
     font-size: 2.2rem;
   }
 
-  .b {
+  .button {
     padding: 7px 0 0 5px;
-    margin-left: 8px;
-    font-size: 1.2rem;
-    line-height: 1.6rem;
-    vertical-align: super;
-    width: 70px;
-    display: inline-block;
   }
 }
 
-.bar {
+.footer {
   color: cyan;
 }
