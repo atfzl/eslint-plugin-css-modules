@@ -1,6 +1,6 @@
 {
   "name": "eslint-plugin-css-modules",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Checks that you are using the existent css/scss classes, no more no less",
   "main": "index.js",
   "scripts": {
