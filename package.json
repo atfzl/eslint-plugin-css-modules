@@ -19,7 +19,7 @@
   "author": "Atif Afzal",
   "license": "MIT",
   "peerDependencies": {
-    "eslint": ">=3.0.0"
+    "eslint": ">=2.0.0"
   },
   "devDependencies": {
     "babel-cli": "^6.18.0",
