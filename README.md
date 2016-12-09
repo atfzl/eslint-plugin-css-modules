@@ -28,7 +28,6 @@ npm i --save-dev eslint-plugin-css-modules
 
 ## Screen Shot
 
-js:
 ![ScreenShot](./screenshots/screenshot1.png)
 
 ```
