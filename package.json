@@ -17,7 +17,7 @@
     "eslint-plugin"
   ],
   "author": "Atif Afzal",
-  "license": "ISC",
+  "license": "MIT",
   "peerDependencies": {
     "eslint": ">=3.0.0"
   },
