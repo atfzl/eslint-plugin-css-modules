@@ -14,7 +14,8 @@
   "keywords": [
     "eslint",
     "eslintplugin",
-    "eslint-plugin"
+    "eslint-plugin",
+    "css-modules"
   ],
   "author": "Atif Afzal",
   "license": "MIT",
