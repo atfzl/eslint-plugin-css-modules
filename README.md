@@ -26,6 +26,10 @@ npm i --save-dev eslint-plugin-css-modules
 }
 ```
 
+## Note
+
+It ignores the class names starting with _
+
 ## Screen Shot
 
 ![ScreenShot](https://raw.githubusercontent.com/atfzl/eslint-plugin-css-modules/master/screenshots/screenshot2.png)
