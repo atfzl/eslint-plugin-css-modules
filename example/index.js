@@ -3,6 +3,8 @@ import s from './foo.scss';
 const component = () => {
   const cls = s['containr'];
 
+  const x = s._getCss();
+
   return (
     <div className={`${s.foo}`}>
       text
