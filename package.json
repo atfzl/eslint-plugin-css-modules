@@ -17,7 +17,15 @@
     "eslint-plugin",
     "css-modules"
   ],
-  "author": "Atif Afzal",
+  "author": {
+    "name": "Atif Afzal",
+    "email": "atif5801@gmail.com",
+    "url": "http://atfzl.me"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/atfzl/eslint-plugin-css-modules.git"
+  },
   "license": "MIT",
   "peerDependencies": {
     "eslint": ">=2.0.0"
