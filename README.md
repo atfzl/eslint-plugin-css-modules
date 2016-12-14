@@ -33,12 +33,12 @@ It ignores the class names starting with _
 
 ## Screen Shot
 
-![ScreenShot](https://raw.githubusercontent.com/atfzl/eslint-plugin-css-modules/master/screenshots/screenshot2.png)
+![ScreenShot](https://raw.githubusercontent.com/atfzl/eslint-plugin-css-modules/master/screenshots/screenshot3.png)
 
 ```
-  1:8   error  Unused classes found: container, button  css-modules/no-unused-or-extra-class
-  4:17  error  Class 'containr' not found               css-modules/no-unused-or-extra-class
-  7:26  error  Class 'foo' not found                    css-modules/no-unused-or-extra-class
+   1:8   error  Unused classes found: container  css-modules/no-unused-class
+   5:17  error  Class 'containr' not found       css-modules/no-undef-class
+  10:26  error  Class 'foo' not found            css-modules/no-undef-class
 ```
 
 scss:
