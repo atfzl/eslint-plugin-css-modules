@@ -4,7 +4,8 @@ This plugin intends to help you in tracking down problems when you are using css
 
 ## Rules
 
-* `css-modules/no-unused-or-extra-class`: You must not use a non existing class and must use all existing classes from css/scss file.
+* `css-modules/no-unused-class`: You must use all the classes defined in css/scss file.
+* `css-modules/no-undef-class`: You must not use a non existing class.
 
 ## Installation
 
@@ -43,6 +44,11 @@ It ignores the class names starting with _
 scss:
 
 ```scss
+/* .head is global, will not be used in js */
+:global(.head) {
+  color: green;
+}
+
 .container {
   width: 116px;
 

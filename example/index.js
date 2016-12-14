@@ -4,7 +4,7 @@ import cx from 'classnames';
 const component = () => {
   const cls = s['containr'];
 
-  const x = s._getCss();
+  s._getCss();
 
   return (
     <div className={`${s.foo}`}>
