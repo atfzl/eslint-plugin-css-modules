@@ -5,6 +5,14 @@ This plugin intends to help you in tracking down problems when you are using css
 ## Rules
 
 * `css-modules/no-unused-class`: You must use all the classes defined in css/scss file.
+
+>If you still want to mark a class as used, then use this comment on top of your file
+```js
+/* eslint css-modules/no-unused-class: [2, { markAsUsed: ['container'] }] */
+```
+where container is the css class that you want to mark as used.
+Add all such classes in the array.
+
 * `css-modules/no-undef-class`: You must not use a non existing class.
 
 ## Installation
