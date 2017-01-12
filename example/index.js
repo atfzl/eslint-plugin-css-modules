@@ -1,5 +1,6 @@
+/* eslint css-modules/no-unused-class: [2, { markAsUsed: ['container'] }] */
+
 import s from './foo.scss';
-import cx from 'classnames';
 
 const component = () => {
   const cls = s['containr'];
@@ -9,7 +10,7 @@ const component = () => {
   return (
     <div className={`${s.foo}`}>
       text
-      <div className={cx(cls, s.button)}>
+      <div className={`${cls} ${s.button}`}>
       </div>
       <div className={s.footer}>
         Footer
