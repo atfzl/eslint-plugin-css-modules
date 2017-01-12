@@ -5,6 +5,8 @@ import s from './foo.scss';
 const component = () => {
   const cls = s['containr'];
 
+  s[cls];
+
   s._getCss();
 
   return (
