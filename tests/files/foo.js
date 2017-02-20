@@ -1,0 +1,5 @@
+/*
+   nothing to see here
+   this file will be provided as filename parameter for RuleTester.
+   This file is referred in utils.js
+ */
