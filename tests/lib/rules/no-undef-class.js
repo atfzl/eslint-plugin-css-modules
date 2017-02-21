@@ -122,6 +122,22 @@ ruleTester.run('no-undef-class', rule, {
       ],
     }),
     /*
+      check less support
+    */
+    test({
+      code: `
+        import s from './noUndefClass1.less';
+
+        export default Foo = () => (
+          <div className={s.bold}>
+          </div>
+        );
+      `,
+      errors: [
+        'Class \'bold\' not found',
+      ],
+    }),
+    /*
        TODO:
        classes in global block should also be ignored
      */
