@@ -78,6 +78,22 @@ ruleTester.run('no-unused-class', rule, {
         'Unused classes found: foo'
       ]
     }),
+    /*
+       check less support
+     */
+    test({
+      code: `
+        import s from './noUnusedClass1.less';
+
+        export default Foo = () => (
+          <div>
+          </div>
+        );
+      `,
+      errors: [
+        'Unused classes found: foo'
+      ]
+    }),
     /* TODO: global block should also be ignored */
   ],
 });

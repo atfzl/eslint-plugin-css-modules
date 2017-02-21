@@ -2,11 +2,11 @@
 
 [![Build Status](https://travis-ci.org/atfzl/eslint-plugin-css-modules.svg?branch=master)](https://travis-ci.org/atfzl/eslint-plugin-css-modules)
 
-This plugin intends to help you in tracking down problems when you are using css-modules. It tells if you are using a non-existent css/scss class in js or if you forgot to use some classes which you declared in css/scss.
+This plugin intends to help you in tracking down problems when you are using css-modules. It tells if you are using a non-existent css/scss/less class in js or if you forgot to use some classes which you declared in css/scss/less.
 
 ## Rules
 
-* `css-modules/no-unused-class`: You must use all the classes defined in css/scss file.
+* `css-modules/no-unused-class`: You must use all the classes defined in css/scss/less file.
 
 >If you still want to mark a class as used, then use this comment on top of your file
 ```js
