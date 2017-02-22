@@ -1,0 +1,12 @@
+.foo {
+  font-weight: 300;
+}
+
+.bar {
+  @extend .foo;
+  color: red;
+}
+
+.baz {
+  width: 100px;
+}

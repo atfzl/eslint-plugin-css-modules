@@ -1,0 +1,13 @@
+.foo {
+  font-weight: 300;
+}
+
+.bar {
+  color: red;
+  composes: .foo;
+}
+
+.baz {
+  composes: .other from './otherfile';
+  color: blue;
+}

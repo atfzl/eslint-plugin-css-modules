@@ -43,6 +43,34 @@ ruleTester.run('no-unused-class', rule, {
       `,
     }),
     /*
+       check if composes classes are ignored
+     */
+    test({
+      code: `
+        import s from './composes1.scss';
+
+        export default Foo = () => (
+          <div className={s.bar}>
+            <span className={s.baz}></span>
+          </div>
+        );
+      `,
+    }),
+    /*
+       check if @extend classes are ignored
+     */
+    test({
+      code: `
+        import s from './extend1.scss';
+
+        export default Foo = () => (
+          <div className={s.bar}>
+            <span className={s.baz}></span>
+          </div>
+        );
+      `,
+    }),
+    /*
        TODO:
        global scope ignore
      */
@@ -92,6 +120,34 @@ ruleTester.run('no-unused-class', rule, {
       `,
       errors: [
         'Unused classes found: foo'
+      ]
+    }),
+    /* check composes support */
+    test({
+      code: `
+        import s from './composes1.scss';
+
+        export default Foo = () => (
+          <div className={s.bar}>
+          </div>
+        );
+      `,
+      errors: [
+        'Unused classes found: baz'
+      ]
+    }),
+    /* check @extend support */
+    test({
+      code: `
+        import s from './extend1.scss';
+
+        export default Foo = () => (
+          <div className={s.bar}>
+          </div>
+        );
+      `,
+      errors: [
+        'Unused classes found: baz'
       ]
     }),
     /* TODO: global block should also be ignored */

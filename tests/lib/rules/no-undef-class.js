@@ -67,6 +67,36 @@ ruleTester.run('no-undef-class', rule, {
         );
       `,
     }),
+    /*
+       using composes
+     */
+    test({
+      code: `
+        import s from './composes1.scss';
+
+        export default Foo = () => (
+          <div className={s.bar}>
+            <div className={s.baz}>
+            </div>
+          </div>
+        );
+      `,
+    }),
+    /*
+       using @extend
+     */
+    test({
+      code: `
+        import s from './extend1.scss';
+
+        export default Foo = () => (
+          <div className={s.bar}>
+            <div className={s.baz}>
+            </div>
+          </div>
+        );
+      `,
+    }),
   ],
   /*
      invalid cases
@@ -135,6 +165,42 @@ ruleTester.run('no-undef-class', rule, {
       `,
       errors: [
         'Class \'bold\' not found',
+      ],
+    }),
+    /*
+       using composes
+     */
+    test({
+      code: `
+        import s from './composes1.scss';
+
+        export default Foo = () => (
+          <div className={s.bar}>
+            <div className={s.bazz}>
+            </div>
+          </div>
+        );
+      `,
+      errors: [
+        'Class \'bazz\' not found',
+      ],
+    }),
+    /*
+       using @extend
+     */
+    test({
+      code: `
+        import s from './extend1.scss';
+
+        export default Foo = () => (
+          <div className={s.bar}>
+            <div className={s.bazz}>
+            </div>
+          </div>
+        );
+      `,
+      errors: [
+        'Class \'bazz\' not found',
       ],
     }),
     /*
