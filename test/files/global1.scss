@@ -1,0 +1,21 @@
+.foo {}
+
+.bar {
+  :global(.baz) {}
+}
+
+:global {
+  .f {
+
+  }
+}
+
+.baz {
+  :global {
+    .gar {}
+  }
+}
+
+:global .as {}
+
+:global(.oiu) {}

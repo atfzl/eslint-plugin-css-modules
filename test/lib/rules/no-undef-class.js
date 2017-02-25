@@ -97,6 +97,37 @@ ruleTester.run('no-undef-class', rule, {
         );
       `,
     }),
+    /*
+       file that can't be parsed should not give any error
+     */
+    test({
+      code: `
+        import s from './unparsable.scss';
+
+        export default Foo = () => (
+          <div className={s.bar}>
+            <div className={s.baz}>
+            </div>
+          </div>
+        );
+      `,
+    }),
+    /*
+       :global is ignored
+     */
+    test({
+      code: `
+        import s from './global1.scss';
+
+        export default Foo = () => (
+          <div className={s.bar}>
+            <div className={s.baz}>
+              <div className={s.foo}></div>
+            </div>
+          </div>
+        );
+      `
+    }),
   ],
   /*
      invalid cases
@@ -201,6 +232,25 @@ ruleTester.run('no-undef-class', rule, {
       `,
       errors: [
         'Class \'bazz\' not found',
+      ],
+    }),
+    /*
+       should show errors for file that does not exist
+     */
+    test({
+      code: `
+        import s from './fileThatDoesNotExist.scss';
+
+        export default Foo = () => (
+          <div className={s.bar}>
+            <div className={s.baz}>
+            </div>
+          </div>
+        );
+      `,
+      errors: [
+        'Class \'bar\' not found',
+        'Class \'baz\' not found',
       ],
     }),
     /*
