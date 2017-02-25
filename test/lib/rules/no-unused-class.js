@@ -70,10 +70,6 @@ ruleTester.run('no-unused-class', rule, {
         );
       `,
     }),
-    /*
-       TODO:
-       global scope ignore
-     */
   ],
   /*
      invalid cases
@@ -150,6 +146,5 @@ ruleTester.run('no-unused-class', rule, {
         'Unused classes found: baz'
       ]
     }),
-    /* TODO: global block should also be ignored */
   ],
 });

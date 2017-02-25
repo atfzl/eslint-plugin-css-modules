@@ -253,9 +253,5 @@ ruleTester.run('no-undef-class', rule, {
         'Class \'baz\' not found',
       ],
     }),
-    /*
-       TODO:
-       classes in global block should also be ignored
-     */
   ],
 });

@@ -12,7 +12,7 @@
     "lint": "eslint lib test",
     "test": "concurrently 'npm run test:rules' 'npm run test:mocha'",
     "test:rules": "babel-node ./test/lib/rules",
-    "test:mocha": "mocha 'test/**/*.test.js' --compilers js:babel-register",
+    "test:mocha": "mocha 'test/**/*.test.js'",
     "prepublish": "concurrently 'npm run test' 'npm run lint' 'npm run build'"
   },
   "engines": {
@@ -39,6 +39,7 @@
   },
   "devDependencies": {
     "babel-cli": "^6.18.0",
+    "babel-core": "^6.23.1",
     "babel-eslint": "^7.1.0",
     "babel-plugin-syntax-flow": "^6.18.0",
     "babel-plugin-transform-flow-strip-types": "^6.18.0",
