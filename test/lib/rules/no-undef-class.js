@@ -128,6 +128,18 @@ ruleTester.run('no-undef-class', rule, {
         );
       `
     }),
+    /*
+       use gonzales-primitive when gonzales fails to parse
+     */
+    test({
+      code: `
+        import s from './gonzalesFail1.scss';
+
+        export default Foo = () => (
+           <div className={s.foo}></div>
+        );
+      `
+    }),
   ],
   /*
      invalid cases

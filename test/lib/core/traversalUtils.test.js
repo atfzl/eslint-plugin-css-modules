@@ -1,7 +1,7 @@
 /* eslint-env mocha */
 
 import { expect } from 'chai';
-import gonzales from 'gonzales-pe';
+import gonzales from '../../../lib/core/gonzales';
 
 import { eliminateGlobals } from '../../../lib/core/traversalUtils';
 
