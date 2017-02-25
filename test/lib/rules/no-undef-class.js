@@ -133,7 +133,7 @@ ruleTester.run('no-undef-class', rule, {
      */
     test({
       code: `
-        import s from './gonzalesFail1.scss';
+        import s from './gonzalesFail1.css';
 
         export default Foo = () => (
            <div className={s.foo}></div>
