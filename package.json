@@ -12,7 +12,9 @@
     "lint": "eslint lib test",
     "test": "concurrently 'npm run test:rules' 'npm run test:mocha'",
     "test:rules": "babel-node ./test/lib/rules",
-    "test:mocha": "mocha 'test/**/*.test.js' --compilers js:babel-register"
+    "test:mocha": "mocha 'test/**/*.test.js' --compilers js:babel-register",
+    "pre-publish": "concurrently 'npm run test' 'npm run lint' 'npm run build'",
+    "publish": "npm run pre-publish && npm publish"
   },
   "engines": {
     "node": ">=4.0.0"
