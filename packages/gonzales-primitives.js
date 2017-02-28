@@ -2611,7 +2611,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	function getNmName2() {
 	  var s = tokens[pos].toString();
 
-	  console.log(tokens[pos]);
 	  if (tokens[pos++].type === NodeType.DIGIT && pos < tokensLength && tokens[pos].type === NodeType.CHARACTER) s += tokens[pos++].toString();
 
 	  return s;
