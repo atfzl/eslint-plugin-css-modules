@@ -1,6 +1,6 @@
 {
   "name": "eslint-plugin-css-modules",
-  "version": "2.6.0",
+  "version": "2.6.1",
   "description": "Checks that you are using the existent css/scss/less classes, no more no less",
   "main": "build/index.js",
   "files": [
@@ -14,7 +14,8 @@
     "test": "concurrently 'npm run test:rules' 'npm run test:mocha'",
     "test:rules": "babel-node ./test/lib/rules",
     "test:mocha": "mocha 'test/**/*.test.js'",
-    "prepublish": "concurrently 'npm run test' 'npm run lint' 'npm run build'"
+    "my-pre-publish": "concurrently 'npm run test' 'npm run lint' 'npm run build'",
+    "my-publish": "npm run my-pre-publish && npm publish"
   },
   "engines": {
     "node": ">=4.0.0"
