@@ -4,10 +4,10 @@
 
 .bar {
   color: red;
-  composes: .foo;
+  composes: foo;
 }
 
 .baz {
-  composes: .other from './otherfile';
+  composes: other from './otherfile';
   color: blue;
 }
