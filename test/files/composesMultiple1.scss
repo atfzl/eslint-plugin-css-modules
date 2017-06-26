@@ -1,0 +1,17 @@
+.foo {
+  font-weight: 300;
+}
+
+.tar {
+  color: black;
+}
+
+.bar {
+  color: red;
+  composes: foo tar;
+}
+
+.baz {
+  composes: other from './otherfile';
+  color: blue;
+}

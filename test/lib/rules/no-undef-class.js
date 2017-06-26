@@ -83,6 +83,21 @@ ruleTester.run('no-undef-class', rule, {
       `,
     }),
     /*
+      composing with multiple classes
+    */
+    test({
+      code: `
+        import s from './composesMultiple1.scss';
+
+        export default Foo = () => (
+          <div className={s.bar}>
+            <div className={s.baz}>
+            </div>
+          </div>
+        );
+      `,
+    }),
+    /*
        using @extend
      */
     test({
@@ -221,6 +236,24 @@ ruleTester.run('no-undef-class', rule, {
           <div className={s.bar}>
             <div className={s.bazz}>
             </div>
+          </div>
+        );
+      `,
+      errors: [
+        'Class \'bazz\' not found',
+      ],
+    }),
+    /*
+       composing multiple classes
+     */
+    test({
+      code: `
+        import s from './composesMultiple1.scss';
+
+        export default Foo = () => (
+          <div className={s.bar}>
+            <div className={s.bazz} />
+            <div className={s.foo} />
           </div>
         );
       `,

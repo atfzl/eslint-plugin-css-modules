@@ -57,6 +57,20 @@ ruleTester.run('no-unused-class', rule, {
       `,
     }),
     /*
+       composes with multiple classes
+     */
+    test({
+      code: `
+        import s from './composesMultiple1.scss';
+
+        export default Foo = () => (
+          <div className={s.bar}>
+            <span className={s.baz}></span>
+          </div>
+        );
+      `,
+    }),
+    /*
        check if @extend classes are ignored
      */
     test({
@@ -122,6 +136,20 @@ ruleTester.run('no-unused-class', rule, {
     test({
       code: `
         import s from './composes1.scss';
+
+        export default Foo = () => (
+          <div className={s.bar}>
+          </div>
+        );
+      `,
+      errors: [
+        'Unused classes found: baz'
+      ]
+    }),
+    /* check multiple composes support */
+    test({
+      code: `
+        import s from './composesMultiple1.scss';
 
         export default Foo = () => (
           <div className={s.bar}>
