@@ -1,0 +1,11 @@
+.foo {
+  font-weight: 300;
+
+  &_bar {
+    font-weight: 300;
+
+    &_baz {
+      font-weight: 300;
+    }
+  }
+}
