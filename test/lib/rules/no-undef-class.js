@@ -186,6 +186,17 @@ ruleTester.run('no-undef-class', rule, {
         );
       `,
     }),
+    test({
+      code: `
+        import s from './parentSelector8.scss';
+
+        export default Foo = () => (
+          <div className={s.foo}>
+            <div className={s.foo_bar}></div>
+          </div>
+        );
+      `,
+    }),
     /*
        file that can't be parsed should not give any error
      */
