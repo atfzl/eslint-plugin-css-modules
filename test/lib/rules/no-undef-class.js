@@ -113,6 +113,91 @@ ruleTester.run('no-undef-class', rule, {
       `,
     }),
     /*
+       using parent selector (`&`)
+     */
+    test({
+      code: `
+        import s from './parentSelector1.scss';
+
+        export default Foo = () => (
+          <div className={s.foo}>
+            <div className={s.foo_bar}></div>
+          </div>
+        );
+      `,
+    }),
+    test({
+      code: `
+        import s from './parentSelector2.scss';
+
+        export default Foo = () => (
+          <div className={s.foo}>
+            <div className={s.bar}></div>
+            <div className={s.bar_baz}></div>
+          </div>
+        );
+      `,
+    }),
+    test({
+      code: `
+        import s from './parentSelector3.scss';
+
+        export default Foo = () => (
+          <div className={s.foo}>
+            <div className={s.foo_bar}></div>
+            <div className={s.foo_baz}></div>
+          </div>
+        );
+      `,
+    }),
+    test({
+      code: `
+        import s from './parentSelector4.scss';
+
+        export default Foo = () => (
+          <div className={s.foo}>
+            <div className={s.foo_bar}></div>
+            <div className={s.foo_baz}></div>
+          </div>
+        );
+      `,
+    }),
+    test({
+      code: `
+        import s from './parentSelector5.scss';
+
+        export default Foo = () => (
+          <div className={s.foo}>
+            <div className={s.foo_baz}></div>
+            <div className={s.bar_baz}></div>
+          </div>
+        );
+      `,
+    }),
+    test({
+      code: `
+        import s from './parentSelector6.scss';
+
+        export default Foo = () => (
+          <div className={s.foo}>
+            <div className={s.foo_bar}></div>
+            <div className={s.foo_bar_baz}></div>
+          </div>
+        );
+      `,
+    }),
+    test({
+      code: `
+        import s from './parentSelector8.scss';
+
+        export default Foo = () => (
+          <div className={s.foo}>
+            <div className={s.foo_bar}></div>
+          </div>
+        );
+      `,
+    }),
+    /*
        file that can't be parsed should not give any error
      */
     test({

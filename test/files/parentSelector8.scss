@@ -1,0 +1,9 @@
+@import "~styles/media-queries";
+
+.foo {
+  @include match-medium {
+    &_bar {
+      font-weight: 300;
+    }
+  };
+}

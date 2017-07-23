@@ -84,6 +84,22 @@ ruleTester.run('no-unused-class', rule, {
         );
       `,
     }),
+    /*
+       check if classes are ignored if they only
+       exist for nesting parent selectors (`&`)
+     */
+    test({
+      code: `
+        import s from './parentSelector7.scss';
+
+        export default Foo = () => (
+          <div>
+            <span className={s.foo_bar}></span>
+            <span className={s.foo_baz}></span>
+          </div>
+        );
+      `,
+    }),
   ],
   /*
      invalid cases
