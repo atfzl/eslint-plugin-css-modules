@@ -190,5 +190,34 @@ ruleTester.run('no-unused-class', rule, {
         'Unused classes found: baz'
       ]
     }),
+    /*
+       using parent selector (`&`)
+     */
+    test({
+      code: `
+        import s from './parentSelector4.scss';
+
+        export default Foo = () => (
+          <div className={s.foo}>
+            <div className={s.foo_baz}></div>
+          </div>
+        );
+      `,
+      errors: [
+        'Unused classes found: foo_bar',
+      ],
+    }),
+    test({
+      code: `
+        import s from './parentSelector8.scss';
+
+        export default Foo = () => (
+          <div className={s.foo} />
+        );
+      `,
+      errors: [
+        'Unused classes found: foo_bar',
+      ],
+    }),
   ],
 });
