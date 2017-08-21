@@ -240,6 +240,51 @@ ruleTester.run('no-undef-class', rule, {
         );
       `
     }),
+    /*
+       check if camel case classes work as expected
+     */
+    test({
+      code: `
+        import s from './noUndefClass3.scss';
+
+        export default Foo = () => (
+          <div className={s.fooBar}>
+            <div className={s.barFoo}>
+            </div>
+          </div>
+        );
+      `,
+      options: [{ camelCase: true }],
+    }),
+    /*
+       check if camel case classes work as expected
+     */
+    test({
+      code: `
+        import s from './noUndefClass3.scss';
+
+        export default Foo = () => (
+          <div className={s['foo-bar']}>
+            <div className={s['bar-foo']}>
+            </div>
+          </div>
+        );
+      `,
+      options: [{ camelCase: true }],
+    }),
+    test({
+      code: `
+        import s from './noUndefClass3.scss';
+
+        export default Foo = () => (
+          <div className={s.fooBar}>
+            <div className={s.barFoo}>
+            </div>
+          </div>
+        );
+      `,
+      options: [{ camelCase: true }],
+    }),
   ],
   /*
      invalid cases
@@ -398,6 +443,25 @@ ruleTester.run('no-undef-class', rule, {
       `,
       errors: [
         'Class \'bar\' not found',
+        'Class \'baz\' not found',
+      ],
+    }),
+    /*
+       should detect if camel case properties are NOT defined
+     */
+    test({
+      code: `
+        import s from './noUndefClass3.scss';
+
+        export default Foo = () => (
+          <div className={s.fooBar}>
+            <div className={s.baz}>
+            </div>
+          </div>
+        );
+      `,
+      options: [{ camelCase: true }],
+      errors: [
         'Class \'baz\' not found',
       ],
     }),
