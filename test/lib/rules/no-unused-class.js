@@ -100,6 +100,35 @@ ruleTester.run('no-unused-class', rule, {
         );
       `,
     }),
+    /*
+       check if camel case classes work as expected
+     */
+    test({
+      code: `
+        import s from './noUnusedClass3.scss';
+
+        export default Foo = () => (
+          <div className={s.fooBar}>
+            <div className={s.bar}>
+            </div>
+          </div>
+        );
+      `,
+      options: [{ camelCase: true }],
+    }),
+    test({
+      code: `
+        import s from './noUnusedClass3.scss';
+
+        export default Foo = () => (
+          <div className={s['foo-bar']}>
+            <div className={s.bar}>
+            </div>
+          </div>
+        );
+      `,
+      options: [{ camelCase: true }],
+    }),
   ],
   /*
      invalid cases
@@ -189,6 +218,54 @@ ruleTester.run('no-unused-class', rule, {
       errors: [
         'Unused classes found: baz'
       ]
+    }),
+    /*
+       using parent selector (`&`)
+     */
+    test({
+      code: `
+        import s from './parentSelector4.scss';
+
+        export default Foo = () => (
+          <div className={s.foo}>
+            <div className={s.foo_baz}></div>
+          </div>
+        );
+      `,
+      errors: [
+        'Unused classes found: foo_bar',
+      ],
+    }),
+    test({
+      code: `
+        import s from './parentSelector8.scss';
+
+        export default Foo = () => (
+          <div className={s.foo} />
+        );
+      `,
+      errors: [
+        'Unused classes found: foo_bar',
+      ],
+    }),
+    /*
+       should detect if camel case properties are NOT used
+     */
+    test({
+      code: `
+        import s from './noUnusedClass3.scss';
+
+        export default Foo = () => (
+          <div>
+            <div className={s.bar}>
+            </div>
+          </div>
+        );
+      `,
+      options: [{ camelCase: true }],
+      errors: [
+        'Unused classes found: foo-bar',
+      ],
     }),
   ],
 });

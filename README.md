@@ -15,7 +15,17 @@ This plugin intends to help you in tracking down problems when you are using css
 where container is the css class that you want to mark as used.
 Add all such classes in the array.
 
+>If you use the `camelCase` option of `css-loader`, you must also enabled it for this plugin
+```js
+/* eslint css-modules/no-unused-class: [2, { camelCase: true }] */
+```
+
 * `css-modules/no-undef-class`: You must not use a non existing class.
+
+>If you use the `camelCase` option of `css-loader`, you must also enabled it for this plugin
+```js
+/* eslint css-modules/no-undef-class: [2, { camelCase: true }] */
+```
 
 ## Installation
 
@@ -33,6 +43,23 @@ npm i --save-dev eslint-plugin-css-modules
   ],
   "extends": [
     "plugin:css-modules/recommended"
+  ]
+}
+```
+
+You may also tweak the rules individually. For instance, if you use the [camelCase](https://github.com/webpack-contrib/css-loader) option of webpack's css-loader:
+
+```json
+{
+  "plugins": [
+    "css-modules"
+  ],
+  "extends": [
+    "plugin:css-modules/recommended"
+  ],
+  "rules": [
+    "css-modules/no-unused-class": [2, { "camelCase": true }],
+    "css-modules/no-undef-class": [2, { "camelCase": true }]
   ]
 }
 ```
