@@ -47,7 +47,7 @@ npm i --save-dev eslint-plugin-css-modules
 }
 ```
 
-You may also tweak the rules individually. For instance, if you use the [camelCase](https://github.com/webpack-contrib/css-loader) option of webpack's css-loader:
+You may also tweak the rules individually. For instance, if you use the [camelCase](https://github.com/webpack-contrib/css-loader#camelcase) option of webpack's css-loader:
 
 ```json
 {
@@ -62,6 +62,11 @@ You may also tweak the rules individually. For instance, if you use the [camelCa
     "css-modules/no-undef-class": [2, { "camelCase": true }]
   ]
 }
+```
+
+The camelCase option has 4 possible values, see [css-loader#camelCase](https://github.com/webpack-contrib/css-loader#camelcase) for description:
+```js
+true | "dashes" | "only" | "dashes-only"
 ```
 
 ## Screen Shot
