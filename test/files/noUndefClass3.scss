@@ -1,7 +1,19 @@
 .foo-bar {
-  min-width: 1024px;
+  display: flex;
 }
 
 .bar-foo {
-    min-width: 1024px;
+  display: flex;
+}
+
+.alreadyCamelCased {
+    display: flex;
+}
+
+.snake_cased {
+    display: flex;
+}
+
+:global(.bar) {
+  font-weight: bold;
 }

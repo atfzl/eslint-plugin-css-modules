@@ -101,7 +101,7 @@ ruleTester.run('no-unused-class', rule, {
       `,
     }),
     /*
-       check if camel case classes work as expected
+       check if camelCase=true classes work as expected
      */
     test({
       code: `
@@ -109,8 +109,9 @@ ruleTester.run('no-unused-class', rule, {
 
         export default Foo = () => (
           <div className={s.fooBar}>
-            <div className={s.bar}>
-            </div>
+            <div className={s.barFoo}></div>
+            <div className={s.alreadyCamelCased}></div>
+            <div className={s.snakeCased}></div>
           </div>
         );
       `,
@@ -122,12 +123,78 @@ ruleTester.run('no-unused-class', rule, {
 
         export default Foo = () => (
           <div className={s['foo-bar']}>
-            <div className={s.bar}>
-            </div>
+            <div className={s['bar-foo']}></div>
+            <div className={s.alreadyCamelCased}></div>
+            <div className={s.snake_cased}></div>
           </div>
         );
       `,
       options: [{ camelCase: true }],
+    }),
+    /*
+       check if camelCase=dashes classes work as expected
+     */
+    test({
+      code: `
+        import s from './noUnusedClass3.scss';
+
+        export default Foo = () => (
+          <div className={s.fooBar}>
+            <div className={s.barFoo}></div>
+            <div className={s.alreadyCamelCased}></div>
+            <div className={s.snake_cased}></div>
+          </div>
+        );
+      `,
+      options: [{ camelCase: 'dashes' }],
+    }),
+    test({
+      code: `
+        import s from './noUnusedClass3.scss';
+
+        export default Foo = () => (
+          <div className={s['foo-bar']}>
+            <div className={s['bar-foo']}></div>
+            <div className={s.alreadyCamelCased}></div>
+            <div className={s.snake_cased}></div>
+          </div>
+        );
+      `,
+      options: [{ camelCase: 'dashes' }],
+    }),
+    /*
+       check if camelCase=only classes work as expected
+     */
+    test({
+      code: `
+        import s from './noUnusedClass3.scss';
+
+        export default Foo = () => (
+          <div className={s.fooBar}>
+            <div className={s.barFoo}></div>
+            <div className={s.alreadyCamelCased}></div>
+            <div className={s.snakeCased}></div>
+          </div>
+        );
+      `,
+      options: [{ camelCase: 'only' }],
+    }),
+    /*
+       check if camelCase=dashes-only classes work as expected
+     */
+    test({
+      code: `
+        import s from './noUnusedClass3.scss';
+
+        export default Foo = () => (
+          <div className={s.fooBar}>
+            <div className={s.barFoo}></div>
+            <div className={s.alreadyCamelCased}></div>
+            <div className={s.snake_cased}></div>
+          </div>
+        );
+      `,
+      options: [{ camelCase: 'dashes-only' }],
     }),
   ],
   /*
@@ -139,15 +206,16 @@ ruleTester.run('no-unused-class', rule, {
         import s from './noUnusedClass1.scss';
 
         export default Foo = () => (
-          <div className={s.bar}>
-          </div>
+          <div className={s.bar}></div>
         );
       `,
       errors: [
         'Unused classes found: foo, bold'
       ]
     }),
-    /* ignored global scope selector class */
+    /*
+       ignored global scope selector class
+     */
     test({
       code: `
         import s from './noUnusedClass2.scss';
@@ -177,42 +245,45 @@ ruleTester.run('no-unused-class', rule, {
         'Unused classes found: foo'
       ]
     }),
-    /* check composes support */
+    /*
+       check composes support
+     */
     test({
       code: `
         import s from './composes1.scss';
 
         export default Foo = () => (
-          <div className={s.bar}>
-          </div>
+          <div className={s.bar}></div>
         );
       `,
       errors: [
         'Unused classes found: baz'
       ]
     }),
-    /* check multiple composes support */
+    /*
+       check multiple composes support
+     */
     test({
       code: `
         import s from './composesMultiple1.scss';
 
         export default Foo = () => (
-          <div className={s.bar}>
-          </div>
+          <div className={s.bar}></div>
         );
       `,
       errors: [
         'Unused classes found: baz'
       ]
     }),
-    /* check @extend support */
+    /*
+       check @extend support
+     */
     test({
       code: `
         import s from './extend1.scss';
 
         export default Foo = () => (
-          <div className={s.bar}>
-          </div>
+          <div className={s.bar}></div>
         );
       `,
       errors: [
@@ -249,22 +320,77 @@ ruleTester.run('no-unused-class', rule, {
       ],
     }),
     /*
-       should detect if camel case properties are NOT used
+       should detect if camel case properties are NOT used when camelCase=true
      */
     test({
       code: `
         import s from './noUnusedClass3.scss';
 
         export default Foo = () => (
-          <div>
-            <div className={s.bar}>
-            </div>
-          </div>
+          <div className={ s.fooBar } />
         );
       `,
       options: [{ camelCase: true }],
       errors: [
-        'Unused classes found: foo-bar',
+        'Unused classes found: bar-foo, alreadyCamelCased, snake_cased',
+      ],
+    }),
+    /*
+       should detect if camel case properties are NOT used when camelCase=dashes
+     */
+    test({
+      code: `
+        import s from './noUnusedClass3.scss';
+
+        export default Foo = () => (
+          <div className={ s.fooBar }>
+            <div className={s.snakeCased}></div>
+          </div>
+        );
+      `,
+      options: [{ camelCase: 'dashes' }],
+      errors: [
+        'Unused classes found: bar-foo, alreadyCamelCased, snake_cased',
+      ],
+    }),
+    /*
+       should detect if camel case properties are NOT used when camelCase=only
+     */
+    test({
+      code: `
+        import s from './noUnusedClass3.scss';
+
+        export default Foo = () => (
+          <div className={s['foo-bar']}>
+            <div className={s.barFoo}></div>
+            <div className={s.snakeCased}></div>
+            <div className={s.bar}></div>
+          </div>
+        );
+      `,
+      options: [{ camelCase: 'only' }],
+      errors: [
+        'Unused classes found: foo-bar, alreadyCamelCased',
+      ],
+    }),
+    /*
+       should detect if camel case properties are NOT used when camelCase=dashes-only
+     */
+    test({
+      code: `
+        import s from './noUnusedClass3.scss';
+
+        export default Foo = () => (
+          <div className={s['foo-bar']}>
+            <div className={s.barFoo}></div>
+            <div className={s.snakeCased}></div>
+            <div className={s.bar}></div>
+          </div>
+        );
+      `,
+      options: [{ camelCase: 'dashes-only' }],
+      errors: [
+        'Unused classes found: foo-bar, alreadyCamelCased, snake_cased',
       ],
     }),
   ],
