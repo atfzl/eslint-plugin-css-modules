@@ -2,6 +2,18 @@
   display: flex;
 }
 
+.bar-foo {
+  display: flex;
+}
+
+.alreadyCamelCased {
+    display: flex;
+}
+
+.snake_cased {
+    display: flex;
+}
+
 :global(.bar) {
   font-weight: bold;
 }
