@@ -205,7 +205,7 @@ ruleTester.run('no-unused-class', rule, {
 
         export default Foo = () => (
           <div className={s.wrapper}>
-            <h1 className={s['foo-bar']}>Work1</h1>
+            <h1 className={s.fooBar}>Work1</h1>
             <h1 className={s.test}>Works2</h1>
           </div>
         )
