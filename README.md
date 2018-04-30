@@ -57,10 +57,10 @@ You may also tweak the rules individually. For instance, if you use the [camelCa
   "extends": [
     "plugin:css-modules/recommended"
   ],
-  "rules": [
+  "rules": {
     "css-modules/no-unused-class": [2, { "camelCase": true }],
     "css-modules/no-undef-class": [2, { "camelCase": true }]
-  ]
+  }
 }
 ```
 
