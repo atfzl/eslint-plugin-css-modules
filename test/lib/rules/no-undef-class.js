@@ -12,6 +12,19 @@ ruleTester.run('no-undef-class', rule, {
    */
   valid: [
     /*
+      absolute import
+      eg: 'foo/bar.scss'
+    */
+    test({
+      code: `
+        import s from 'test/files/noUndefClass1.scss';
+
+        export default Foo = () => (
+          <div className={s.container}></div>
+        );
+      `,
+    }),
+    /*
        dot notation
        eg: s.container
      */
