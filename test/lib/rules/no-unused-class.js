@@ -209,6 +209,22 @@ ruleTester.run('no-unused-class', rule, {
       `,
       options: [{ camelCase: 'dashes-only' }],
     }),
+    /**
+     * parent selector class
+    */
+    test({
+      code: `
+        import s from './parentClassSelector1.scss';
+
+        export default Foo = () => (
+          <div className={s.wrapper}>
+            <h1 className={s.fooBar}>Work1</h1>
+            <h1 className={s.test}>Works2</h1>
+          </div>
+        )
+      `,
+      options: [{ camelCase: true }],
+    }),
   ],
   /*
      invalid cases

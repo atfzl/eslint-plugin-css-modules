@@ -1,0 +1,12 @@
+.wrapper {
+  background: blue;
+  color: white;
+
+  & .foo-bar {
+    color: red;
+  }
+
+  &.test {
+    color: green;
+  }
+}

@@ -342,6 +342,22 @@ ruleTester.run('no-undef-class', rule, {
       `,
       options: [{ camelCase: 'dashes-only' }],
     }),
+    /**
+     * parent class selector
+     */
+    test({
+      code: `
+        import s from './parentClassSelector1.scss';
+
+        export default Foo = () => (
+          <div className={s.wrapper}>
+            <h1 className={s.fooBar}>works1</h1>
+            <h1 className={s.test}>Works</h1>
+          </div>
+        )
+      `,
+      options: [{ camelCase: true }],
+    }),
   ],
   /*
      invalid cases
