@@ -1,0 +1,7 @@
+@import './parentSelectorWithParent.scss';
+@import ''; // make sure empty doesn't error out
+@import 'asdf'; // make sure non-existent doesn't error out
+
+.own {
+  min-width: 1024px;
+}
