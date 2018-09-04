@@ -69,6 +69,20 @@ The camelCase option has 4 possible values, see [css-loader#camelCase](https://g
 true | "dashes" | "only" | "dashes-only"
 ```
 
+## Specifying base path
+
+You can specify path for the base directory via plugin settings in .eslintrc. This is used by the plugin to resolve absolute (S)CSS paths:
+
+```json
+{
+  "settings": {
+    "css-modules": {
+      "basePath": "app/scripts/..."
+    }
+  }
+}
+```
+
 ## Screen Shot
 
 ![ScreenShot](https://raw.githubusercontent.com/atfzl/eslint-plugin-css-modules/master/screenshots/screenshot3.png)
