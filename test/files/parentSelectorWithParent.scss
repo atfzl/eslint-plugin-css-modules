@@ -1,5 +1,5 @@
 @import './parentSelector2.scss'; // make sure classes are resolved both vertically and horizontally
-@import './parentSelector3.scss';
+@import './parentSelector3'; // make sure extension-less paths are resolved
 
 .parent {
   font-weight: 300;
