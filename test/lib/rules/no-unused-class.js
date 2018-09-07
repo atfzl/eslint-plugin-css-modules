@@ -406,27 +406,5 @@ ruleTester.run('no-unused-class', rule, {
         'Unused classes found: foo-bar, alreadyCamelCased, snake_cased',
       ],
     }),
-
-    /*
-       finds classes in imports
-     */
-    test({
-      code: `
-        import s from 'test/files/noUndefClassWithParent.scss';
-
-        export default Foo = () => (
-          <div className={s.own}>
-            <div className={s.parent}>
-              <div classname={s.foo}>
-                <div classname={s.foo_bar}></div>
-              </div>
-            </div>
-          </div>
-        );
-      `,
-      errors: [
-        'Unused classes found: bar_baz, foo_baz',
-      ],
-    }),
   ],
 });
