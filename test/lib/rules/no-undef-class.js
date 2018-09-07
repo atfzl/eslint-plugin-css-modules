@@ -342,24 +342,6 @@ ruleTester.run('no-undef-class', rule, {
       `,
       options: [{ camelCase: 'dashes-only' }],
     }),
-    /*
-       finds classes in imports
-     */
-    test({
-      code: `
-        import s from 'test/files/noUndefClassWithParent.scss';
-
-        export default Foo = () => (
-          <div className={s.own}>
-            <div className={s.parent}>
-              <div classname={s.foo}>
-                <div classname={s.foo_bar}></div>
-              </div>
-            </div>
-          </div>
-        );
-      `,
-    }),
   ],
   /*
      invalid cases
