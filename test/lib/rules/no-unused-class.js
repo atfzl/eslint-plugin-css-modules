@@ -56,6 +56,19 @@ ruleTester.run('no-unused-class', rule, {
       `,
     }),
     /*
+       ignore props exported by ICSS :export pseudo-selector
+       https://github.com/css-modules/icss#export
+     */
+    test({
+      code: `
+        import s from './export1.scss';
+
+        export default Foo = () => (
+          <div className={s.bar}></div>
+        );
+      `,
+    }),
+    /*
        check if composes classes are ignored
      */
     test({

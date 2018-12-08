@@ -20,7 +20,7 @@ Add all such classes in the array.
 /* eslint css-modules/no-unused-class: [2, { camelCase: true }] */
 ```
 
-* `css-modules/no-undef-class`: You must not use a non existing class.
+* `css-modules/no-undef-class`: You must not use a non existing class, or a property that hasn't been exported using the [:export keyword](https://github.com/css-modules/icss#export).
 
 >If you use the `camelCase` option of `css-loader`, you must also enabled it for this plugin
 ```js
