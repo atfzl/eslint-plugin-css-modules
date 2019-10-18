@@ -176,5 +176,26 @@ describe('eliminateGlobals()', () => {
 .someother  {}`
     );
   });
+
+  it('should remove only classes wrapped in :global() - global middle', () => {
+    const content = `
+.bar {}
+
+.someother :global(.bar.foo) .somethingelse {}`;
+
+    const ast = gonzales.parse(
+      content,
+      { syntax: 'scss' }
+    );
+
+    eliminateGlobals(ast);
+
+    expect(ast.toString()).to.be.equal(
+      `
+.bar {}
+
+.someother  .somethingelse {}`
+    );
+  });
 });
 
