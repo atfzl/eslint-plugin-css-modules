@@ -116,7 +116,7 @@ describe('eliminateGlobals()', () => {
 
   it('should remove classes wrapped in :global()', () => {
     const content = `
-.bar {}
+ .bar {}
 
 :global(.bar.foo) {}`;
 
@@ -129,9 +129,73 @@ describe('eliminateGlobals()', () => {
 
     expect(ast.toString()).to.be.equal(
       `
-.bar {}
+ .bar {}
 
 `
     );
   });
+
+  it('should remove only classes wrapped in :global() - global first', () => {
+    const content = `
+.bar {}
+
+:global(.bar.foo) .someother {}`;
+
+    const ast = gonzales.parse(
+      content,
+      { syntax: 'scss' }
+    );
+
+    eliminateGlobals(ast);
+
+    expect(ast.toString()).to.be.equal(
+      `
+.bar {}
+
+ .someother {}`
+    );
+  });
+
+  it('should remove only classes wrapped in :global() - global second', () => {
+    const content = `
+.bar {}
+
+.someother :global(.bar.foo) {}`;
+
+    const ast = gonzales.parse(
+      content,
+      { syntax: 'scss' }
+    );
+
+    eliminateGlobals(ast);
+
+    expect(ast.toString()).to.be.equal(
+      `
+.bar {}
+
+.someother  {}`
+    );
+  });
+
+  it('should remove only classes wrapped in :global() - global middle', () => {
+    const content = `
+.bar {}
+
+.someother :global(.bar.foo) .somethingelse {}`;
+
+    const ast = gonzales.parse(
+      content,
+      { syntax: 'scss' }
+    );
+
+    eliminateGlobals(ast);
+
+    expect(ast.toString()).to.be.equal(
+      `
+.bar {}
+
+.someother  .somethingelse {}`
+    );
+  });
 });
+
