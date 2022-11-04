@@ -39,7 +39,7 @@
   "license": "MIT",
   "peerDependencies": {
     "eslint": ">=2.0.0",
-    "eslint-plugin-import": "*",
+    "eslint-plugin-import": "*"
   },
   "devDependencies": {
     "babel-cli": "^6.18.0",
