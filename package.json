@@ -63,6 +63,7 @@
     "nodemon": "^1.11.0"
   },
   "dependencies": {
+    "eslint-module-utils": "^2.7.4",
     "gonzales-pe": "^4.0.3",
     "lodash": "^4.17.2"
   }
