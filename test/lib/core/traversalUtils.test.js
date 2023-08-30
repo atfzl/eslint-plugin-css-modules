@@ -134,4 +134,21 @@ describe('eliminateGlobals()', () => {
 `
     );
   });
+
+  it('should not remove classes before :global', () => {
+    const content = `
+.bar :global(.bar.foo) {}`;
+
+    const ast = gonzales.parse(
+      content,
+      { syntax: 'css' }
+    );
+
+    eliminateGlobals(ast);
+
+    expect(ast.toString()).to.be.equal(
+        `
+.bar  {}`
+      );
+  });
 });

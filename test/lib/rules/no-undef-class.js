@@ -228,7 +228,9 @@ ruleTester.run('no-undef-class', rule, {
         export default Foo = () => (
           <div className={s.bar}>
             <div className={s.baz}>
-              <div className={s.foo}></div>
+              <div className={s.foo}>
+                <div className={s.zee}></div>
+              </div>
             </div>
           </div>
         );
