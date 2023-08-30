@@ -358,6 +358,19 @@ ruleTester.run('no-undef-class', rule, {
       `,
       options: [{ camelCase: 'dashes-only' }],
     }),
+
+    /*
+      support id selectors
+    */
+    test({
+      code: `
+        import s from './id.scss';
+
+        export default Foo = () => (
+          <div id={s.scopedId}></div>
+        );
+      `,
+    }),
   ],
   /*
      invalid cases
