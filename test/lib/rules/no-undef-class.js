@@ -263,6 +263,21 @@ ruleTester.run('no-undef-class', rule, {
       `
     }),
     /*
+      :not(.wrapper) should include .wrapper
+    */
+    test({
+      code: `
+        import s from 'test/files/not.scss';
+
+        export default Foo = () => (
+          <div className={s.wrapper}>
+            <div className={s.child1}></div>
+            <div className={s.child2}></div>
+          </div>
+        );
+      `,
+    }),
+    /*
        check if camelCase=true classes work as expected
      */
     test({

@@ -1,0 +1,13 @@
+.container:not(.wrapper) {
+  min-width: 1024px;
+}
+
+.container :not(.child1) {
+  min-width: 1024px;
+}
+
+.container {
+  :not(.child2) {
+    min-width: 1024px;
+  }
+}
