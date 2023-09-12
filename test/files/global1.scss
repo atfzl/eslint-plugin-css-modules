@@ -1,21 +1,25 @@
-.foo {}
+.local1 {}
 
-.bar {
-  :global(.baz) {}
+.local2 {
+  :global(.global1) {}
 }
+
+:global .global1 {}
+
+:global(.global2) {}
 
 :global {
-  .f {
+  .global1 {
 
   }
 }
 
-.baz {
+.local3 {
   :global {
-    .gar {}
+    .global2 {}
   }
 }
 
-:global .as {}
+.local4 :global .global1 .global2 {}
 
-:global(.oiu) {}
+.local5 :global(.global1, .global2) .local6 {}

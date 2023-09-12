@@ -73,7 +73,7 @@ describe('eliminateGlobals()', () => {
 
     it('should only remove :global() pseudo class and its argument classes', () => {
       const content = `
-      .local1 :global(.global1) .local2, .local3 :global(.global2, .global3).local4 {}
+      .local1 :global(.global1) .local2, .local3 :global(.global2, .global3) :local(.local4) {}
       `;
 
       const ast = gonzales.parse(content, { syntax: 'scss' });
@@ -81,7 +81,7 @@ describe('eliminateGlobals()', () => {
       eliminateGlobals(ast);
 
       expect(ast.toString().trim()).to.be.equal(
-        '.local1 .local2, .local3 .local4 {}'
+        '.local1 .local2, .local3 :local(.local4) {}'
       );
     });
   });
