@@ -1,10 +1,13 @@
-# **status: NOT MAINTAINED**
+# Updates
+I fixed an issue with the resolver to be able to use features from [eslint-plugin-import](https://github.com/import-js/eslint-plugin-import).
+
+# original status: NOT MAINTAINED
 I have moved on to using css-in-js libraries like styled-components and emotion.
 So, not working on this project.
 
 # eslint-plugin-css-modules
 
-[![Build Status](https://travis-ci.org/atfzl/eslint-plugin-css-modules.svg?branch=master)](https://travis-ci.org/atfzl/eslint-plugin-css-modules)
+[![yarn-build](https://github.com/GerroDen/eslint-plugin-css-modules/actions/workflows/main.yml/badge.svg)](https://github.com/GerroDen/eslint-plugin-css-modules/actions/workflows/main.yml)
 
 This plugin intends to help you in tracking down problems when you are using css-modules. It tells if you are using a non-existent css/scss/less class in js or if you forgot to use some classes which you declared in css/scss/less.
 
@@ -71,20 +74,6 @@ You may also tweak the rules individually. For instance, if you use the [camelCa
 The camelCase option has 4 possible values, see [css-loader#camelCase](https://github.com/webpack-contrib/css-loader#camelcase) for description:
 ```js
 true | "dashes" | "only" | "dashes-only"
-```
-
-## Specifying base path
-
-You can specify path for the base directory via plugin settings in .eslintrc. This is used by the plugin to resolve absolute (S)CSS paths:
-
-```json
-{
-  "settings": {
-    "css-modules": {
-      "basePath": "app/scripts/..."
-    }
-  }
-}
 ```
 
 ## Screen Shot

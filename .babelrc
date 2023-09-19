@@ -1,11 +1,18 @@
 {
   "presets": [
-    "es2015",
-    "stage-1"
+    [
+      "@babel/preset-env",
+      {
+        "targets": {
+          "node": "16"
+        }
+      }
+    ]
   ],
   "plugins": [
-    "syntax-flow",
-    "transform-flow-strip-types"
+    "@babel/plugin-syntax-flow",
+    "@babel/transform-flow-strip-types",
+    "@babel/plugin-proposal-export-default-from"
   ],
   "sourceMaps": "inline"
 }
