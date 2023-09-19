@@ -6,132 +6,83 @@ import gonzales from '../../../lib/core/gonzales';
 import { eliminateGlobals } from '../../../lib/core/traversalUtils';
 
 describe('eliminateGlobals()', () => {
-  it('should remove :global block', () => {
-    const content = `
-:global {
-  .foo {}
-}`;
+  describe('resolving :global pseudo class', () => {
+    it('should remove :global operator and the global class', () => {
+      const content = `
+      :global .global {}
+      `;
 
-    const ast = gonzales.parse(
-      content,
-      { syntax: 'scss' }
-    );
+      const ast = gonzales.parse(content, { syntax: 'scss' });
 
-    eliminateGlobals(ast);
+      eliminateGlobals(ast);
 
-    expect(ast.toString()).to.be.equal('\n');
+      expect(ast.toString().trim()).to.be.equal('');
+    });
+
+    it('should remove :global operator and the global classes', () => {
+      const content = `
+      :global .global1 .global2 .global3.global4 {}
+      `;
+
+      const ast = gonzales.parse(content, { syntax: 'scss' });
+
+      eliminateGlobals(ast);
+
+      expect(ast.toString().trim()).to.be.equal('');
+    });
+
+    it('should only remove :global operator and the global classes', () => {
+      const content = `
+      .local1 :global .global1 :local(.local2) .global2 :local(.local3), .local4 {}
+      `;
+
+      const ast = gonzales.parse(content, { syntax: 'scss' });
+
+      eliminateGlobals(ast);
+
+      expect(ast.toString().trim()).to.be.equal(
+        '.local1 :local(.local2) :local(.local3), .local4 {}'
+      );
+    });
   });
 
-  it('should remove :global block, but not local', () => {
-    const content = `
-.bar {}
+  describe('resolving :global() pseudo class', () => {
+    it('should remove :global() pseudo class and its argument class', () => {
+      const content = `
+      :global(.global1) {}
+      `;
 
-:global {
-  .foo {}
-}`;
+      const ast = gonzales.parse(content, { syntax: 'scss' });
 
-    const ast = gonzales.parse(
-      content,
-      { syntax: 'scss' }
-    );
+      eliminateGlobals(ast);
 
-    eliminateGlobals(ast);
+      expect(ast.toString().trim()).to.be.equal('');
+    });
 
-    expect(ast.toString()).to.be.equal(
-      `
-.bar {}
+    it('should remove :global() pseudo class and its argument classes', () => {
+      const content = `
+      :global(.global1) :global(.global2, .global3), :global(.global4.global5) {}
+      `;
 
-`
-    );
-  });
+      const ast = gonzales.parse(content, { syntax: 'scss' });
 
-  it('should remove nested :global block', () => {
-    const content = `
-.bar {}
+      eliminateGlobals(ast);
 
-.baz {
-  :global {
-    .foo {}
-  }
-}`;
+      expect(ast.toString().trim()).to.be.equal('');
+    });
 
-    const ast = gonzales.parse(
-      content,
-      { syntax: 'scss' }
-    );
+    it('should only remove :global() pseudo class and its argument classes', () => {
+      const content = `
+      .local1 :global(.global1) .local2, .local3 :global(.global2, .global3) :local(.local4) {}
+      `;
 
-    eliminateGlobals(ast);
+      const ast = gonzales.parse(content, { syntax: 'scss' });
 
-    expect(ast.toString()).to.be.equal(
-      `
-.bar {}
+      eliminateGlobals(ast);
 
-.baz {
-  
-}`
-    );
-  });
-
-  it('should remove :global selector', () => {
-    const content = `
-.bar {}
-
-:global .baz {}`;
-
-    const ast = gonzales.parse(
-      content,
-      { syntax: 'scss' }
-    );
-
-    eliminateGlobals(ast);
-
-    expect(ast.toString()).to.be.equal(
-      `
-.bar {}
-
-`
-    );
-  });
-
-  it('should remove :global selector with multiple classes', () => {
-    const content = `
-.bar {}
-
-:global .baz.foo {}`;
-
-    const ast = gonzales.parse(
-      content,
-      { syntax: 'scss' }
-    );
-
-    eliminateGlobals(ast);
-
-    expect(ast.toString()).to.be.equal(
-      `
-.bar {}
-
-`
-    );
-  });
-
-  it('should remove classes wrapped in :global()', () => {
-    const content = `
-.bar {}
-
-:global(.bar.foo) {}`;
-
-    const ast = gonzales.parse(
-      content,
-      { syntax: 'scss' }
-    );
-
-    eliminateGlobals(ast);
-
-    expect(ast.toString()).to.be.equal(
-      `
-.bar {}
-
-`
-    );
+      expect(ast.toString().trim()).to.be.equal(
+        '.local1 .local2, .local3 :local(.local4) {}'
+      );
+    });
   });
 });
