@@ -669,5 +669,20 @@ ruleTester.run('no-undef-class', rule, {
         'Class or exported property \'foo-baz\' not found',
       ],
     }),
+    /*
+      support id selectors
+    */
+    test({
+      code: `
+        import s from './id.scss';
+
+        export default Foo = () => (
+          <div id={s.badScopedId}></div>
+        );
+      `,
+      errors: [
+        'Class or exported property \'badScopedId\' not found',
+      ],
+    }),
   ],
 });
