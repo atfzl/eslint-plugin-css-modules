@@ -226,13 +226,10 @@ ruleTester.run('no-undef-class', rule, {
         import s from './global1.scss';
 
         export default Foo = () => (
-          <div className={s.bar}>
-            <div className={s.baz}>
-              <div className={s.foo}></div>
-            </div>
+          <div className={s.local1, s.local2, s.local3, s.local4, s.local5, s.local6}>
           </div>
         );
-      `
+      `,
     }),
     /*
        ICSS :export pseudo-selector with a correct prop name should not give error
@@ -412,14 +409,16 @@ ruleTester.run('no-undef-class', rule, {
     */
     test({
       code: `
-        import s from './noUndefClass2.scss';
+        import s from './global1.scss';
 
         export default Foo = () => (
-          <div className={s.bold}></div>
+          <div className={s.global1, s.global2, s.global3}></div>
         );
       `,
       errors: [
-        'Class or exported property \'bold\' not found',
+        "Class or exported property 'global1' not found",
+        "Class or exported property 'global2' not found",
+        "Class or exported property 'global3' not found",
       ],
     }),
     /*
