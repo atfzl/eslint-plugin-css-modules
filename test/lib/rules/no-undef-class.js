@@ -355,6 +355,19 @@ ruleTester.run('no-undef-class', rule, {
       `,
       options: [{ camelCase: 'dashes-only' }],
     }),
+
+    /*
+      support id selectors
+    */
+    test({
+      code: `
+        import s from './id.scss';
+
+        export default Foo = () => (
+          <div id={s.scopedId}></div>
+        );
+      `,
+    }),
   ],
   /*
      invalid cases
@@ -654,6 +667,21 @@ ruleTester.run('no-undef-class', rule, {
         'Class or exported property \'foo-bar\' not found',
         'Class or exported property \'already-camel-cased\' not found',
         'Class or exported property \'foo-baz\' not found',
+      ],
+    }),
+    /*
+      support id selectors
+    */
+    test({
+      code: `
+        import s from './id.scss';
+
+        export default Foo = () => (
+          <div id={s.badScopedId}></div>
+        );
+      `,
+      errors: [
+        'Class or exported property \'badScopedId\' not found',
       ],
     }),
   ],

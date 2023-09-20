@@ -222,6 +222,18 @@ ruleTester.run('no-unused-class', rule, {
       `,
       options: [{ camelCase: 'dashes-only' }],
     }),
+    /*
+      support id selectors
+    */
+    test({
+      code: `
+        import s from './id.scss';
+
+        export default Foo = () => (
+          <div id={s.scopedId}></div>
+        );
+      `,
+    }),
   ],
   /*
      invalid cases
@@ -417,6 +429,21 @@ ruleTester.run('no-unused-class', rule, {
       options: [{ camelCase: 'dashes-only' }],
       errors: [
         'Unused classes found in noUnusedClass3.scss: foo-bar, alreadyCamelCased, snake_cased',
+      ],
+    }),
+    /*
+      support id selectors
+    */
+    test({
+      code: `
+        import s from './id.scss';
+
+        export default Foo = () => (
+          <div>Not using s.scopedId</div>
+        );
+      `,
+      errors: [
+        'Unused classes found in id.scss: scopedId',
       ],
     }),
   ],
