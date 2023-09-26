@@ -1,7 +1,0 @@
-:root {
-  --color: red;
-}
-
-.foo {
-  color: --color;
-}
