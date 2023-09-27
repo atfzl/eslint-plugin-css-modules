@@ -12,7 +12,7 @@
     "build": "rm -rf build && babel lib -d build",
     "lint": "eslint lib test",
     "test": "mocha 'test/**/*.test.js' --compilers js:@babel/register",
-    "my-pre-publish": "concurrently 'npm run test' 'npm run build'",
+    "my-pre-publish": "npm run test && npm run build",
     "my-publish": "npm run my-pre-publish && yarn publish"
   },
   "engines": {
@@ -46,8 +46,7 @@
     "@babel/plugin-transform-flow-strip-types": "^7.22.5",
     "@babel/preset-env": "^7.22.20",
     "@babel/register": "^7.22.15",
-    "chai": "^3.5.0",
-    "concurrently": "^3.3.0",
+    "chai": "^4.3.9",
     "eslint": "^8.50.0",
     "eslint-config-standard": "^17.1.0",
     "eslint-plugin-import": "^2.28.1",
