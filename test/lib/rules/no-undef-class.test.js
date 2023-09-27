@@ -1,26 +1,7 @@
-import { RuleTester } from 'eslint';
-import { test } from 'mocha';
-
 import rule from '../../../lib/rules/no-undef-class';
+import { RuleTester, addFilenameOption } from '../../utils';
 
-import { addFilenameOption } from '../../utils';
-
-RuleTester.describe = function (text, method) {
-  RuleTester.it.title = text;
-  return method.call(this);
-};
-
-RuleTester.it = function (text, method) {
-  test(RuleTester.it.title + ': ' + text, method);
-};
-
-const ruleTester = new RuleTester({
-  parserOptions: {
-    sourceType: 'module',
-    ecmaVersion: 6,
-    ecmaFeatures: { jsx: true },
-  },
-});
+const ruleTester = new RuleTester();
 
 ruleTester.run('no-undef-class', rule, {
   valid: [
