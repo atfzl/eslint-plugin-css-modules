@@ -3,20 +3,11 @@
 import path from 'path';
 
 /**
- * Adds default option to ESLint TestRunner test cases.
- *
- * TODO:  Replace this function with passing a default option object to
- * TestRunner.
- * @see https://eslint.org/docs/latest/integrate/nodejs-api#ruletester
+ * TODO:  Find a way to remove this.
  */
-export function addDefaultOptions (testCase) {
+export function addFilenameOption(testCase) {
   return {
     ...testCase,
-    parserOptions: {
-      sourceType: 'module',
-      ecmaVersion: 6,
-      ecmaFeatures: { jsx: true },
-    },
     filename: path.resolve(__dirname, './files/foo.js'),
   };
 }

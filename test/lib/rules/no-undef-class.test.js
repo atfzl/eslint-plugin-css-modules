@@ -3,7 +3,7 @@ import { test } from 'mocha';
 
 import rule from '../../../lib/rules/no-undef-class';
 
-import { addDefaultOptions } from '../../utils';
+import { addFilenameOption } from '../../utils';
 
 RuleTester.describe = function (text, method) {
   RuleTester.it.title = text;
@@ -14,11 +14,17 @@ RuleTester.it = function (text, method) {
   test(RuleTester.it.title + ': ' + text, method);
 };
 
-const ruleTester = new RuleTester();
+const ruleTester = new RuleTester({
+  parserOptions: {
+    sourceType: 'module',
+    ecmaVersion: 6,
+    ecmaFeatures: { jsx: true },
+  },
+});
 
 ruleTester.run('no-undef-class', rule, {
   valid: [
-    addDefaultOptions({
+    addFilenameOption({
       name: "absolute import eg: 'foo/bar.scss'",
       code: `
         import s from 'test/files/noUndefClass1.scss';
@@ -28,7 +34,7 @@ ruleTester.run('no-undef-class', rule, {
         );
       `,
     }),
-    addDefaultOptions({
+    addFilenameOption({
       name: 'dot notation eg: s.container',
       code: `
         import s from './noUndefClass1.scss';
@@ -38,7 +44,7 @@ ruleTester.run('no-undef-class', rule, {
         );
       `,
     }),
-    addDefaultOptions({
+    addFilenameOption({
       name: "square bracket string key eg: s['container']",
       code: `
         import s from './noUndefClass1.scss';
@@ -48,7 +54,7 @@ ruleTester.run('no-undef-class', rule, {
         );
       `,
     }),
-    addDefaultOptions({
+    addFilenameOption({
       name: 'does not check for dynamic properties eg: s[dynamicValue]',
       code: `
         import s from './noUndefClass1.scss';
@@ -58,7 +64,7 @@ ruleTester.run('no-undef-class', rule, {
         );
       `,
     }),
-    addDefaultOptions({
+    addFilenameOption({
       name: 'names starting with _ will be ignored',
       code: `
         import s from './noUndefClass1.scss';
@@ -70,7 +76,7 @@ ruleTester.run('no-undef-class', rule, {
         );
       `,
     }),
-    addDefaultOptions({
+    addFilenameOption({
       name: 'using composes',
       code: `
         import s from './composes1.scss';
@@ -82,7 +88,7 @@ ruleTester.run('no-undef-class', rule, {
         );
       `,
     }),
-    addDefaultOptions({
+    addFilenameOption({
       name: 'composing with multiple classes',
       code: `
         import s from './composesMultiple1.scss';
@@ -94,7 +100,7 @@ ruleTester.run('no-undef-class', rule, {
         );
       `,
     }),
-    addDefaultOptions({
+    addFilenameOption({
       name: 'using @extend',
       code: `
         import s from './extend1.scss';
@@ -106,7 +112,7 @@ ruleTester.run('no-undef-class', rule, {
         );
       `,
     }),
-    addDefaultOptions({
+    addFilenameOption({
       name: 'using parent selector (`&`)',
       code: `
         import s from './parentSelector1.scss';
@@ -118,7 +124,7 @@ ruleTester.run('no-undef-class', rule, {
         );
       `,
     }),
-    addDefaultOptions({
+    addFilenameOption({
       name: 'Add support for parent selectors (&).',
       code: `
         import s from './parentSelector2.scss';
@@ -131,7 +137,7 @@ ruleTester.run('no-undef-class', rule, {
         );
       `,
     }),
-    addDefaultOptions({
+    addFilenameOption({
       name: 'Add support for parent selectors (&).',
       code: `
         import s from './parentSelector3.scss';
@@ -144,7 +150,7 @@ ruleTester.run('no-undef-class', rule, {
         );
       `,
     }),
-    addDefaultOptions({
+    addFilenameOption({
       name: 'Add support for parent selectors (&).',
       code: `
         import s from './parentSelector4.scss';
@@ -157,7 +163,7 @@ ruleTester.run('no-undef-class', rule, {
         );
       `,
     }),
-    addDefaultOptions({
+    addFilenameOption({
       name: 'Add support for parent selectors (&).',
       code: `
         import s from './parentSelector5.scss';
@@ -170,7 +176,7 @@ ruleTester.run('no-undef-class', rule, {
         );
       `,
     }),
-    addDefaultOptions({
+    addFilenameOption({
       name: 'Add support for parent selectors (&).',
       code: `
         import s from './parentSelector6.scss';
@@ -183,7 +189,7 @@ ruleTester.run('no-undef-class', rule, {
         );
       `,
     }),
-    addDefaultOptions({
+    addFilenameOption({
       name: 'Support parent selectors in include blocks (aka mixins).',
       code: `
         import s from './parentSelector8.scss';
@@ -195,7 +201,7 @@ ruleTester.run('no-undef-class', rule, {
         );
       `,
     }),
-    addDefaultOptions({
+    addFilenameOption({
       name: "file that can't be parsed should not give any error",
       code: `
         import s from './unparsable.scss';
@@ -207,7 +213,7 @@ ruleTester.run('no-undef-class', rule, {
         );
       `,
     }),
-    addDefaultOptions({
+    addFilenameOption({
       name: 'global is ignored',
       code: `
         import s from './global1.scss';
@@ -218,7 +224,7 @@ ruleTester.run('no-undef-class', rule, {
         );
       `,
     }),
-    addDefaultOptions({
+    addFilenameOption({
       name: 'ICSS :export pseudo-selector with a correct prop name should not give error',
       code: `
         import s from './export1.scss';
@@ -231,7 +237,7 @@ ruleTester.run('no-undef-class', rule, {
         );
       `,
     }),
-    addDefaultOptions({
+    addFilenameOption({
       name: 'check if camelCase=true classes work as expected',
       code: `
         import s from './noUndefClass3.scss';
@@ -246,7 +252,7 @@ ruleTester.run('no-undef-class', rule, {
       `,
       options: [{ camelCase: true }],
     }),
-    addDefaultOptions({
+    addFilenameOption({
       name: 'Add support for all variants of the camelCase options.',
       code: `
         import s from './noUndefClass3.scss';
@@ -261,7 +267,7 @@ ruleTester.run('no-undef-class', rule, {
       `,
       options: [{ camelCase: true }],
     }),
-    addDefaultOptions({
+    addFilenameOption({
       name: 'check if camelCase=dashes classes work as expected',
       code: `
         import s from './noUndefClass3.scss';
@@ -276,7 +282,7 @@ ruleTester.run('no-undef-class', rule, {
       `,
       options: [{ camelCase: 'dashes' }],
     }),
-    addDefaultOptions({
+    addFilenameOption({
       name: 'Add camelCase option',
       code: `
         import s from './noUndefClass3.scss';
@@ -291,7 +297,7 @@ ruleTester.run('no-undef-class', rule, {
       `,
       options: [{ camelCase: 'dashes' }],
     }),
-    addDefaultOptions({
+    addFilenameOption({
       name: 'check if camelCase=only classes work as expected',
       code: `
         import s from './noUndefClass3.scss';
@@ -306,7 +312,7 @@ ruleTester.run('no-undef-class', rule, {
       `,
       options: [{ camelCase: 'only' }],
     }),
-    addDefaultOptions({
+    addFilenameOption({
       name: 'check if camelCase=dashes-only classes work as expected',
       code: `
         import s from './noUndefClass3.scss';
@@ -323,7 +329,7 @@ ruleTester.run('no-undef-class', rule, {
     }),
   ],
   invalid: [
-    addDefaultOptions({
+    addFilenameOption({
       name: 'dot notation',
       code: `
         import s from './noUndefClass1.scss';
@@ -334,7 +340,7 @@ ruleTester.run('no-undef-class', rule, {
       `,
       errors: ["Class or exported property 'containr' not found"],
     }),
-    addDefaultOptions({
+    addFilenameOption({
       name: 'square bracket',
       code: `
         import s from './noUndefClass1.scss';
@@ -345,7 +351,7 @@ ruleTester.run('no-undef-class', rule, {
       `,
       errors: ["Class or exported property 'containr' not found"],
     }),
-    addDefaultOptions({
+    addFilenameOption({
       name: 'classes with global scope for selector are ignored eg. :global(.bold) { font-weight: bold; }',
       code: `
         import s from './global1.scss';
@@ -360,7 +366,7 @@ ruleTester.run('no-undef-class', rule, {
         "Class or exported property 'global3' not found",
       ],
     }),
-    addDefaultOptions({
+    addFilenameOption({
       name: 'ICSS :export pseudo-selector with wrong prop name https://github.com/css-modules/icss#export',
       code: `
         import s from './export2.scss';
@@ -374,7 +380,7 @@ ruleTester.run('no-undef-class', rule, {
       `,
       errors: ["Class or exported property 'myProp' not found"],
     }),
-    addDefaultOptions({
+    addFilenameOption({
       name: 'check less support',
       code: `
         import s from './noUndefClass1.less';
@@ -385,7 +391,7 @@ ruleTester.run('no-undef-class', rule, {
       `,
       errors: ["Class or exported property 'bold' not found"],
     }),
-    addDefaultOptions({
+    addFilenameOption({
       name: 'using composes',
       code: `
         import s from './composes1.scss';
@@ -398,7 +404,7 @@ ruleTester.run('no-undef-class', rule, {
       `,
       errors: ["Class or exported property 'bazz' not found"],
     }),
-    addDefaultOptions({
+    addFilenameOption({
       name: 'composing multiple classes',
       code: `
         import s from './composesMultiple1.scss';
@@ -412,7 +418,7 @@ ruleTester.run('no-undef-class', rule, {
       `,
       errors: ["Class or exported property 'bazz' not found"],
     }),
-    addDefaultOptions({
+    addFilenameOption({
       name: 'using @extend',
       code: `
         import s from './extend1.scss';
@@ -425,7 +431,7 @@ ruleTester.run('no-undef-class', rule, {
       `,
       errors: ["Class or exported property 'bazz' not found"],
     }),
-    addDefaultOptions({
+    addFilenameOption({
       name: 'using parent selector (`&`)',
       code: `
         import s from './parentSelector1.scss';
@@ -439,7 +445,7 @@ ruleTester.run('no-undef-class', rule, {
       `,
       errors: ["Class or exported property 'foo_baz' not found"],
     }),
-    addDefaultOptions({
+    addFilenameOption({
       name: 'should show errors for file that does not exist',
       code: `
         import s from './fileThatDoesNotExist.scss';
@@ -455,7 +461,7 @@ ruleTester.run('no-undef-class', rule, {
         "Class or exported property 'baz' not found",
       ],
     }),
-    addDefaultOptions({
+    addFilenameOption({
       name: 'should detect if camel case properties are NOT defined when camelCase=true',
       code: `
         import s from './noUndefClass3.scss';
@@ -471,7 +477,7 @@ ruleTester.run('no-undef-class', rule, {
       options: [{ camelCase: true }],
       errors: ["Class or exported property 'fooBaz' not found"],
     }),
-    addDefaultOptions({
+    addFilenameOption({
       name: 'Add support for all variants of the camelCase options.',
       code: `
         import s from './noUndefClass3.scss';
@@ -487,7 +493,7 @@ ruleTester.run('no-undef-class', rule, {
       options: [{ camelCase: true }],
       errors: ["Class or exported property 'foo-baz' not found"],
     }),
-    addDefaultOptions({
+    addFilenameOption({
       name: 'should detect if camel case properties are NOT defined when camelCase=dashes',
       code: `
         import s from './noUndefClass3.scss';
@@ -514,7 +520,7 @@ ruleTester.run('no-undef-class', rule, {
         "Class or exported property 'foo-baz' not found",
       ],
     }),
-    addDefaultOptions({
+    addFilenameOption({
       name: 'should detect if camel case properties are NOT defined when camelCase=only',
       code: `
         import s from './noUndefClass3.scss';
@@ -542,7 +548,7 @@ ruleTester.run('no-undef-class', rule, {
         "Class or exported property 'foo-baz' not found",
       ],
     }),
-    addDefaultOptions({
+    addFilenameOption({
       name: 'should detect if camel case properties are NOT defined when camelCase=dashes-only',
       code: `
         import s from './noUndefClass3.scss';
