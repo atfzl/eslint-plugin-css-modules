@@ -566,4 +566,43 @@ describe('no-undef-class', function () {
       },
     ].map((testCase) => addFilenameOption(testCase)),
   });
+
+  ruleTester.run('no-undef-class', rule, {
+    valid: [],
+    invalid: [
+      {
+        name: 'should support animation identifiers - using undefinedAnimationName in className',
+        code: `
+        import s from 'test/files/animationName.scss';
+
+        export default Foo = () => (
+          <div>
+            <div className={s.classUsingAnimation1}></div>
+            <div className={s.classUsingAnimation2}></div>
+            <div className={s.undefinedAnimationName}></div>
+          </div>
+        );
+      `,
+        errors: [
+          "Class or exported property 'undefinedAnimationName' not found",
+        ],
+      },
+      {
+        name: 'should support animation identifiers - using undefinedAnimationName in another class',
+        code: `
+        import s from 'test/files/animationName.scss';
+
+        export default Foo = () => (
+          <div>
+            <div className={s.classUsingAnimation1}></div>
+            <div className={s.classUsingAnimation2}></div>
+          </div>
+        );
+      `,
+        errors: [
+          "Class or exported property 'undefinedAnimationName' not found",
+        ],
+      },
+    ].map((testCase) => addFilenameOption(testCase)),
+  });
 });

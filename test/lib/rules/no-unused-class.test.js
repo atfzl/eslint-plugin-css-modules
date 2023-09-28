@@ -359,4 +359,39 @@ describe('no-unused-class', function () {
       },
     ].map((testCase) => addFilenameOption(testCase)),
   });
+
+  ruleTester.run('no-unused-class', rule, {
+    valid: [
+      {
+        name: 'should support animation identifiers - animationName1 used in className, animationName2 used in other classes',
+        code: `
+        import s from 'test/files/animationName.scss';
+
+        export default Foo = () => (
+          <div>
+            <div className={s.classUsingAnimation1}></div>
+            <div className={s.classUsingAnimation2}></div>
+            <div className={s.animationName1}></div>
+          </div>
+        );
+      `,
+      },
+    ],
+    invalid: [
+      {
+        name: 'should support animation identifiers - animationName1 not used, animationName2 used in other classes',
+        code: `
+        import s from 'test/files/animationName.scss';
+
+        export default Foo = () => (
+          <div>
+            <div className={s.classUsingAnimation1}></div>
+            <div className={s.classUsingAnimation2}></div>
+          </div>
+        );
+      `,
+        errors: ['Unused classes found in animationName.scss: animationName1'],
+      },
+    ].map((testCase) => addFilenameOption(testCase)),
+  });
 });

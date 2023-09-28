@@ -1,0 +1,14 @@
+// Used in `className`
+@keyframes animationName1 {}
+
+// Used in other classes
+@keyframes animationName2 {}
+
+.classUsingAnimation1 {
+  animation-name: animationName2;
+}
+
+// Using undefined animation name in another class
+.classUsingAnimation2 {
+  animation-name: undefinedAnimationName;
+}
