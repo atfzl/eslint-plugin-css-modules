@@ -359,4 +359,20 @@ describe('no-unused-class', function () {
       },
     ].map((testCase) => addFilenameOption(testCase)),
   });
+
+  ruleTester.run('no-unused-class', rule, {
+    valid: [
+      {
+        name: 'should omit id - using undefined id',
+        code: `
+          import s from 'test/files/id.scss';
+  
+          export default Foo = () => (
+            <div className={s.undefinedId}></div>
+          );
+        `,
+      },
+    ].map((testCase) => addFilenameOption(testCase)),
+    invalid: [],
+  });
 });
