@@ -1,12 +1,18 @@
+/* eslint-disable mocha/no-setup-in-describe */
 import rule from '../../../lib/rules/no-unused-class';
 import { RuleTester, addFilenameOption } from '../../utils';
 
 const ruleTester = new RuleTester();
 
-describe('no-unused-class', () => {
+/**
+ * ESLint ruleTester uses it's own `describe` and `it` functions. This Mocha
+ * `describe` is used merely for test output formatting. Therefore, also
+ * disabling the `mocha/no-setup-in-describe` rule.
+ */
+describe('no-unused-class', function () {
   ruleTester.run('no-unused-class', rule, {
     valid: [
-      addFilenameOption({
+      {
         name: "absolute import eg: 'foo/bar.scss'",
         code: `
           import s from 'test/files/noUndefClass1.scss';
@@ -15,8 +21,8 @@ describe('no-unused-class', () => {
             <div className={s.container}></div>
           );
         `,
-      }),
-      addFilenameOption({
+      },
+      {
         name: "dot notation and square brackets eg: s.foo and s['bar']",
         code: `
           import s from './noUnusedClass1.scss';
@@ -29,8 +35,8 @@ describe('no-unused-class', () => {
             </div>
           );
         `,
-      }),
-      addFilenameOption({
+      },
+      {
         name: 'ignore global scope selector',
         code: `
           import s from './noUnusedClass2.scss';
@@ -41,8 +47,8 @@ describe('no-unused-class', () => {
             </div>
           );
         `,
-      }),
-      addFilenameOption({
+      },
+      {
         name: 'ignore props exported by ICSS :export pseudo-selector https://github.com/css-modules/icss#export',
         code: `
           import s from './export1.scss';
@@ -51,8 +57,8 @@ describe('no-unused-class', () => {
             <div className={s.bar}></div>
           );
         `,
-      }),
-      addFilenameOption({
+      },
+      {
         name: 'check if composes classes are ignored',
         code: `
           import s from './composes1.scss';
@@ -63,8 +69,8 @@ describe('no-unused-class', () => {
             </div>
           );
         `,
-      }),
-      addFilenameOption({
+      },
+      {
         name: 'composes with multiple classes',
         code: `
           import s from './composesMultiple1.scss';
@@ -75,8 +81,8 @@ describe('no-unused-class', () => {
             </div>
           );
         `,
-      }),
-      addFilenameOption({
+      },
+      {
         name: 'check if @extend classes are ignored',
         code: `
           import s from './extend1.scss';
@@ -87,8 +93,8 @@ describe('no-unused-class', () => {
             </div>
           );
         `,
-      }),
-      addFilenameOption({
+      },
+      {
         name: 'check if classes are ignored if they only exist for nesting parent selectors (`&`)',
         code: `
           import s from './parentSelector7.scss';
@@ -100,8 +106,8 @@ describe('no-unused-class', () => {
             </div>
           );
         `,
-      }),
-      addFilenameOption({
+      },
+      {
         name: 'check if camelCase=true classes work as expected',
         code: `
           import s from './noUnusedClass3.scss';
@@ -115,8 +121,8 @@ describe('no-unused-class', () => {
           );
         `,
         options: [{ camelCase: true }],
-      }),
-      addFilenameOption({
+      },
+      {
         name: 'Add camelCase option',
         code: `
           import s from './noUnusedClass3.scss';
@@ -130,8 +136,8 @@ describe('no-unused-class', () => {
           );
         `,
         options: [{ camelCase: true }],
-      }),
-      addFilenameOption({
+      },
+      {
         name: 'check if camelCase=dashes classes work as expected',
         code: `
           import s from './noUnusedClass3.scss';
@@ -145,8 +151,8 @@ describe('no-unused-class', () => {
           );
         `,
         options: [{ camelCase: 'dashes' }],
-      }),
-      addFilenameOption({
+      },
+      {
         name: 'Add support for all variants of the camelCase options',
         code: `
           import s from './noUnusedClass3.scss';
@@ -160,8 +166,8 @@ describe('no-unused-class', () => {
           );
         `,
         options: [{ camelCase: 'dashes' }],
-      }),
-      addFilenameOption({
+      },
+      {
         name: 'check if camelCase=only classes work as expected',
         code: `
           import s from './noUnusedClass3.scss';
@@ -175,8 +181,8 @@ describe('no-unused-class', () => {
           );
         `,
         options: [{ camelCase: 'only' }],
-      }),
-      addFilenameOption({
+      },
+      {
         name: 'check if camelCase=dashes-only classes work as expected',
         code: `
           import s from './noUnusedClass3.scss';
@@ -190,10 +196,10 @@ describe('no-unused-class', () => {
           );
         `,
         options: [{ camelCase: 'dashes-only' }],
-      }),
-    ],
+      },
+    ].map((testCase) => addFilenameOption(testCase)),
     invalid: [
-      addFilenameOption({
+      {
         name: 'Unused class error',
         code: `
           import s from './noUnusedClass1.scss';
@@ -203,8 +209,8 @@ describe('no-unused-class', () => {
           );
         `,
         errors: ['Unused classes found in noUnusedClass1.scss: foo, bold'],
-      }),
-      addFilenameOption({
+      },
+      {
         name: 'ignored global scope selector class',
         code: `
           import s from './noUnusedClass2.scss';
@@ -215,8 +221,8 @@ describe('no-unused-class', () => {
           );
         `,
         errors: ['Unused classes found in noUnusedClass2.scss: foo'],
-      }),
-      addFilenameOption({
+      },
+      {
         name: 'check less support',
         code: `
           import s from './noUnusedClass1.less';
@@ -227,8 +233,8 @@ describe('no-unused-class', () => {
           );
         `,
         errors: ['Unused classes found in noUnusedClass1.less: foo'],
-      }),
-      addFilenameOption({
+      },
+      {
         name: 'check composes support',
         code: `
           import s from './composes1.scss';
@@ -238,8 +244,8 @@ describe('no-unused-class', () => {
           );
         `,
         errors: ['Unused classes found in composes1.scss: baz'],
-      }),
-      addFilenameOption({
+      },
+      {
         name: 'check multiple composes support',
         code: `
           import s from './composesMultiple1.scss';
@@ -249,8 +255,8 @@ describe('no-unused-class', () => {
           );
         `,
         errors: ['Unused classes found in composesMultiple1.scss: baz'],
-      }),
-      addFilenameOption({
+      },
+      {
         name: 'check @extend support',
         code: `
           import s from './extend1.scss';
@@ -260,8 +266,8 @@ describe('no-unused-class', () => {
           );
         `,
         errors: ['Unused classes found in extend1.scss: baz'],
-      }),
-      addFilenameOption({
+      },
+      {
         name: 'using parent selector (`&`)',
         code: `
           import s from './parentSelector4.scss';
@@ -273,8 +279,8 @@ describe('no-unused-class', () => {
           );
         `,
         errors: ['Unused classes found in parentSelector4.scss: foo_bar'],
-      }),
-      addFilenameOption({
+      },
+      {
         name: 'snake_case',
         code: `
           import s from './parentSelector8.scss';
@@ -284,8 +290,8 @@ describe('no-unused-class', () => {
           );
         `,
         errors: ['Unused classes found in parentSelector8.scss: foo_bar'],
-      }),
-      addFilenameOption({
+      },
+      {
         name: 'should detect if camel case properties are NOT used when camelCase=true',
         code: `
           import s from './noUnusedClass3.scss';
@@ -298,8 +304,8 @@ describe('no-unused-class', () => {
         errors: [
           'Unused classes found in noUnusedClass3.scss: bar-foo, alreadyCamelCased, snake_cased',
         ],
-      }),
-      addFilenameOption({
+      },
+      {
         name: 'should detect if camel case properties are NOT used when camelCase=dashes',
         code: `
           import s from './noUnusedClass3.scss';
@@ -314,8 +320,8 @@ describe('no-unused-class', () => {
         errors: [
           'Unused classes found in noUnusedClass3.scss: bar-foo, alreadyCamelCased, snake_cased',
         ],
-      }),
-      addFilenameOption({
+      },
+      {
         name: 'should detect if camel case properties are NOT used when camelCase=only',
         code: `
           import s from './noUnusedClass3.scss';
@@ -332,8 +338,8 @@ describe('no-unused-class', () => {
         errors: [
           'Unused classes found in noUnusedClass3.scss: foo-bar, alreadyCamelCased',
         ],
-      }),
-      addFilenameOption({
+      },
+      {
         name: 'should detect if camel case properties are NOT used when camelCase=dashes-only',
         code: `
           import s from './noUnusedClass3.scss';
@@ -350,7 +356,7 @@ describe('no-unused-class', () => {
         errors: [
           'Unused classes found in noUnusedClass3.scss: foo-bar, alreadyCamelCased, snake_cased',
         ],
-      }),
-    ],
+      },
+    ].map((testCase) => addFilenameOption(testCase)),
   });
 });
