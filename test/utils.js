@@ -3,7 +3,7 @@ import { RuleTester as EslintRuleTester } from 'eslint';
 import { test } from 'mocha';
 
 /* pattern taken from eslint-plugin-import */
-export function addFilenameOption(testCase) {
+export function addFilenameOption (testCase) {
   return {
     ...testCase,
     // TODO:  Find a way to remove this.
