@@ -205,20 +205,6 @@ ruleTester.run('no-undef-class', rule, {
       `,
     }),
     /*
-       file that can't be parsed should not give any error
-     */
-    test({
-      code: `
-        import s from './unparsable.scss';
-
-        export default Foo = () => (
-          <div className={s.bar}>
-            <div className={s.baz}></div>
-          </div>
-        );
-      `,
-    }),
-    /*
        :global is ignored
      */
     test({
@@ -526,8 +512,7 @@ ruleTester.run('no-undef-class', rule, {
         );
       `,
       errors: [
-        'Class or exported property \'bar\' not found',
-        'Class or exported property \'baz\' not found',
+        'File not found: ./fileThatDoesNotExist.scss',
       ],
     }),
     /*
@@ -655,6 +640,18 @@ ruleTester.run('no-undef-class', rule, {
         'Class or exported property \'already-camel-cased\' not found',
         'Class or exported property \'foo-baz\' not found',
       ],
+    }),
+    test({
+      code: `
+        import s from './unparsable.scss';
+
+        export default Foo = () => (
+          <div className={s.bar}>
+            <div className={s.baz}></div>
+          </div>
+        );
+      `,
+      errors: ['Error parsing ./unparsable.scss']
     }),
   ],
 });
