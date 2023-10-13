@@ -1,6 +1,6 @@
 {
   "name": "@pager/eslint-plugin-css-modules",
-  "version": "2.16.2",
+  "version": "2.16.3",
   "description": "Checks that you are using the existent css/scss/less classes, no more no less",
   "main": "build/index.js",
   "files": [
@@ -57,7 +57,7 @@
     "nodemon": "^1.11.0"
   },
   "dependencies": {
-    "gonzales-pe": "^4.0.3",
+    "gonzales-pe": "^4.3.0",
     "lodash": "^4.17.2"
   }
 }
