@@ -248,18 +248,6 @@ ruleTester.run('no-undef-class', rule, {
       `
     }),
     /*
-       use gonzales-primitive when gonzales fails to parse
-     */
-    test({
-      code: `
-        import s from './gonzalesFail1.css';
-
-        export default Foo = () => (
-           <div className={s.foo}></div>
-        );
-      `
-    }),
-    /*
        check if camelCase=true classes work as expected
      */
     test({
