@@ -3,10 +3,10 @@ import { RuleTester, addFilenameOption } from '../../utils';
 
 const ruleTester = new RuleTester();
 
-describe('no-unused-class', () => {
+describe('no-undef-class', () => {
   ruleTester.run('no-undef-class', rule, {
     valid: [
-      addFilenameOption({
+      {
         name: "absolute import eg: 'foo/bar.scss'",
         code: `
           import s from 'test/files/noUndefClass1.scss';
@@ -15,8 +15,8 @@ describe('no-unused-class', () => {
             <div className={s.container}></div>
           );
         `,
-      }),
-      addFilenameOption({
+      },
+      {
         name: 'dot notation eg: s.container',
         code: `
           import s from './noUndefClass1.scss';
@@ -25,8 +25,8 @@ describe('no-unused-class', () => {
             <div className={s.container}></div>
           );
         `,
-      }),
-      addFilenameOption({
+      },
+      {
         name: "square bracket string key eg: s['container']",
         code: `
           import s from './noUndefClass1.scss';
@@ -35,8 +35,8 @@ describe('no-unused-class', () => {
             <div className={s['container']}></div>
           );
         `,
-      }),
-      addFilenameOption({
+      },
+      {
         name: 'does not check for dynamic properties eg: s[dynamicValue]',
         code: `
           import s from './noUndefClass1.scss';
@@ -45,8 +45,8 @@ describe('no-unused-class', () => {
             <div className={s[props.primary]}></div>
           );
         `,
-      }),
-      addFilenameOption({
+      },
+      {
         name: 'names starting with _ will be ignored',
         code: `
           import s from './noUndefClass1.scss';
@@ -57,8 +57,8 @@ describe('no-unused-class', () => {
             </div>
           );
         `,
-      }),
-      addFilenameOption({
+      },
+      {
         name: 'using composes',
         code: `
           import s from './composes1.scss';
@@ -69,8 +69,8 @@ describe('no-unused-class', () => {
             </div>
           );
         `,
-      }),
-      addFilenameOption({
+      },
+      {
         name: 'composing with multiple classes',
         code: `
           import s from './composesMultiple1.scss';
@@ -81,8 +81,8 @@ describe('no-unused-class', () => {
             </div>
           );
         `,
-      }),
-      addFilenameOption({
+      },
+      {
         name: 'using @extend',
         code: `
           import s from './extend1.scss';
@@ -93,8 +93,8 @@ describe('no-unused-class', () => {
             </div>
           );
         `,
-      }),
-      addFilenameOption({
+      },
+      {
         name: 'using parent selector (`&`)',
         code: `
           import s from './parentSelector1.scss';
@@ -105,8 +105,8 @@ describe('no-unused-class', () => {
             </div>
           );
         `,
-      }),
-      addFilenameOption({
+      },
+      {
         name: 'Add support for parent selectors (&).',
         code: `
           import s from './parentSelector2.scss';
@@ -118,8 +118,8 @@ describe('no-unused-class', () => {
             </div>
           );
         `,
-      }),
-      addFilenameOption({
+      },
+      {
         name: 'Add support for parent selectors (&).',
         code: `
           import s from './parentSelector3.scss';
@@ -131,8 +131,8 @@ describe('no-unused-class', () => {
             </div>
           );
         `,
-      }),
-      addFilenameOption({
+      },
+      {
         name: 'Add support for parent selectors (&).',
         code: `
           import s from './parentSelector4.scss';
@@ -144,8 +144,8 @@ describe('no-unused-class', () => {
             </div>
           );
         `,
-      }),
-      addFilenameOption({
+      },
+      {
         name: 'Add support for parent selectors (&).',
         code: `
           import s from './parentSelector5.scss';
@@ -157,8 +157,8 @@ describe('no-unused-class', () => {
             </div>
           );
         `,
-      }),
-      addFilenameOption({
+      },
+      {
         name: 'Add support for parent selectors (&).',
         code: `
           import s from './parentSelector6.scss';
@@ -170,8 +170,8 @@ describe('no-unused-class', () => {
             </div>
           );
         `,
-      }),
-      addFilenameOption({
+      },
+      {
         name: 'Support parent selectors in include blocks (aka mixins).',
         code: `
           import s from './parentSelector8.scss';
@@ -182,8 +182,8 @@ describe('no-unused-class', () => {
             </div>
           );
         `,
-      }),
-      addFilenameOption({
+      },
+      {
         name: "file that can't be parsed should not give any error",
         code: `
           import s from './unparsable.scss';
@@ -194,8 +194,8 @@ describe('no-unused-class', () => {
             </div>
           );
         `,
-      }),
-      addFilenameOption({
+      },
+      {
         name: 'global is ignored',
         code: `
           import s from './global1.scss';
@@ -205,8 +205,8 @@ describe('no-unused-class', () => {
             </div>
           );
         `,
-      }),
-      addFilenameOption({
+      },
+      {
         name: 'ICSS :export pseudo-selector with a correct prop name should not give error',
         code: `
           import s from './export1.scss';
@@ -218,8 +218,8 @@ describe('no-unused-class', () => {
             </div>
           );
         `,
-      }),
-      addFilenameOption({
+      },
+      {
         name: 'check if camelCase=true classes work as expected',
         code: `
           import s from './noUndefClass3.scss';
@@ -233,8 +233,8 @@ describe('no-unused-class', () => {
           );
         `,
         options: [{ camelCase: true }],
-      }),
-      addFilenameOption({
+      },
+      {
         name: 'Add support for all variants of the camelCase options.',
         code: `
           import s from './noUndefClass3.scss';
@@ -248,8 +248,8 @@ describe('no-unused-class', () => {
           );
         `,
         options: [{ camelCase: true }],
-      }),
-      addFilenameOption({
+      },
+      {
         name: 'check if camelCase=dashes classes work as expected',
         code: `
           import s from './noUndefClass3.scss';
@@ -263,8 +263,8 @@ describe('no-unused-class', () => {
           );
         `,
         options: [{ camelCase: 'dashes' }],
-      }),
-      addFilenameOption({
+      },
+      {
         name: 'Add camelCase option',
         code: `
           import s from './noUndefClass3.scss';
@@ -278,8 +278,8 @@ describe('no-unused-class', () => {
           );
         `,
         options: [{ camelCase: 'dashes' }],
-      }),
-      addFilenameOption({
+      },
+      {
         name: 'check if camelCase=only classes work as expected',
         code: `
           import s from './noUndefClass3.scss';
@@ -293,8 +293,8 @@ describe('no-unused-class', () => {
           );
         `,
         options: [{ camelCase: 'only' }],
-      }),
-      addFilenameOption({
+      },
+      {
         name: 'check if camelCase=dashes-only classes work as expected',
         code: `
           import s from './noUndefClass3.scss';
@@ -308,10 +308,10 @@ describe('no-unused-class', () => {
           );
         `,
         options: [{ camelCase: 'dashes-only' }],
-      }),
-    ],
+      },
+    ].map((testCase) => addFilenameOption(testCase)),
     invalid: [
-      addFilenameOption({
+      {
         name: 'dot notation',
         code: `
           import s from './noUndefClass1.scss';
@@ -321,8 +321,8 @@ describe('no-unused-class', () => {
           );
         `,
         errors: ["Class or exported property 'containr' not found"],
-      }),
-      addFilenameOption({
+      },
+      {
         name: 'square bracket',
         code: `
           import s from './noUndefClass1.scss';
@@ -332,8 +332,8 @@ describe('no-unused-class', () => {
           );
         `,
         errors: ["Class or exported property 'containr' not found"],
-      }),
-      addFilenameOption({
+      },
+      {
         name: 'classes with global scope for selector are ignored eg. :global(.bold) { font-weight: bold; }',
         code: `
           import s from './global1.scss';
@@ -347,8 +347,8 @@ describe('no-unused-class', () => {
           "Class or exported property 'global2' not found",
           "Class or exported property 'global3' not found",
         ],
-      }),
-      addFilenameOption({
+      },
+      {
         name: 'ICSS :export pseudo-selector with wrong prop name https://github.com/css-modules/icss#export',
         code: `
           import s from './export2.scss';
@@ -361,8 +361,8 @@ describe('no-unused-class', () => {
           );
         `,
         errors: ["Class or exported property 'myProp' not found"],
-      }),
-      addFilenameOption({
+      },
+      {
         name: 'check less support',
         code: `
           import s from './noUndefClass1.less';
@@ -372,8 +372,8 @@ describe('no-unused-class', () => {
           );
         `,
         errors: ["Class or exported property 'bold' not found"],
-      }),
-      addFilenameOption({
+      },
+      {
         name: 'using composes',
         code: `
           import s from './composes1.scss';
@@ -385,8 +385,8 @@ describe('no-unused-class', () => {
           );
         `,
         errors: ["Class or exported property 'bazz' not found"],
-      }),
-      addFilenameOption({
+      },
+      {
         name: 'composing multiple classes',
         code: `
           import s from './composesMultiple1.scss';
@@ -399,8 +399,8 @@ describe('no-unused-class', () => {
           );
         `,
         errors: ["Class or exported property 'bazz' not found"],
-      }),
-      addFilenameOption({
+      },
+      {
         name: 'using @extend',
         code: `
           import s from './extend1.scss';
@@ -412,8 +412,8 @@ describe('no-unused-class', () => {
           );
         `,
         errors: ["Class or exported property 'bazz' not found"],
-      }),
-      addFilenameOption({
+      },
+      {
         name: 'using parent selector (`&`)',
         code: `
           import s from './parentSelector1.scss';
@@ -426,8 +426,8 @@ describe('no-unused-class', () => {
           );
         `,
         errors: ["Class or exported property 'foo_baz' not found"],
-      }),
-      addFilenameOption({
+      },
+      {
         name: 'should show errors for file that does not exist',
         code: `
           import s from './fileThatDoesNotExist.scss';
@@ -442,8 +442,8 @@ describe('no-unused-class', () => {
           "Class or exported property 'bar' not found",
           "Class or exported property 'baz' not found",
         ],
-      }),
-      addFilenameOption({
+      },
+      {
         name: 'should detect if camel case properties are NOT defined when camelCase=true',
         code: `
           import s from './noUndefClass3.scss';
@@ -458,8 +458,8 @@ describe('no-unused-class', () => {
         `,
         options: [{ camelCase: true }],
         errors: ["Class or exported property 'fooBaz' not found"],
-      }),
-      addFilenameOption({
+      },
+      {
         name: 'Add support for all variants of the camelCase options.',
         code: `
           import s from './noUndefClass3.scss';
@@ -474,8 +474,8 @@ describe('no-unused-class', () => {
         `,
         options: [{ camelCase: true }],
         errors: ["Class or exported property 'foo-baz' not found"],
-      }),
-      addFilenameOption({
+      },
+      {
         name: 'should detect if camel case properties are NOT defined when camelCase=dashes',
         code: `
           import s from './noUndefClass3.scss';
@@ -501,8 +501,8 @@ describe('no-unused-class', () => {
           "Class or exported property 'already-camel-cased' not found",
           "Class or exported property 'foo-baz' not found",
         ],
-      }),
-      addFilenameOption({
+      },
+      {
         name: 'should detect if camel case properties are NOT defined when camelCase=only',
         code: `
           import s from './noUndefClass3.scss';
@@ -529,8 +529,8 @@ describe('no-unused-class', () => {
           "Class or exported property 'snake_cased' not found",
           "Class or exported property 'foo-baz' not found",
         ],
-      }),
-      addFilenameOption({
+      },
+      {
         name: 'should detect if camel case properties are NOT defined when camelCase=dashes-only',
         code: `
           import s from './noUndefClass3.scss';
@@ -557,7 +557,7 @@ describe('no-unused-class', () => {
           "Class or exported property 'already-camel-cased' not found",
           "Class or exported property 'foo-baz' not found",
         ],
-      }),
-    ],
+      },
+    ].map((testCase) => addFilenameOption(testCase)),
   });
 });
