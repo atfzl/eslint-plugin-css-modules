@@ -1,12 +1,10 @@
 {
-  "parser": "babel-eslint",
+  "parser": "@babel/eslint-parser",
   "extends": [
     "standard",
     "plugin:import/errors",
-    "plugin:import/warnings"
-  ],
-  "plugins": [
-    "flowtype"
+    "plugin:import/warnings",
+    "plugin:mocha/recommended"
   ],
   "env": {
     "es6": true,

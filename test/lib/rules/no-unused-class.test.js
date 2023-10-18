@@ -1,9 +1,15 @@
+/* eslint-disable mocha/no-setup-in-describe */
 import rule from '../../../lib/rules/no-unused-class';
 import { RuleTester, addFilenameOption } from '../../utils';
 
 const ruleTester = new RuleTester();
 
-describe('no-unused-class', () => {
+/**
+ * ESLint ruleTester uses its own `describe` and `it` functions. This Mocha
+ * `describe` is used merely for test output formatting. Disabling the
+ * `mocha/no-setup-in-describe` rule to allow running rule tester in it.
+ */
+describe('no-unused-class', function () {
   ruleTester.run('no-unused-class', rule, {
     valid: [
       {

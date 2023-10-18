@@ -1,9 +1,15 @@
+/* eslint-disable mocha/no-setup-in-describe */
 import rule from '../../../lib/rules/no-undef-class';
 import { RuleTester, addFilenameOption } from '../../utils';
 
 const ruleTester = new RuleTester();
 
-describe('no-undef-class', () => {
+/**
+ * ESLint ruleTester uses its own `describe` and `it` functions. This Mocha
+ * `describe` is used merely for test output formatting. Disabling the
+ * `mocha/no-setup-in-describe` rule to allow running rule tester in it.
+ */
+describe('no-undef-class', function () {
   ruleTester.run('no-undef-class', rule, {
     valid: [
       {
