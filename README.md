@@ -1,7 +1,3 @@
-# **status: NOT MAINTAINED**
-I have moved on to using css-in-js libraries like styled-components and emotion.
-So, not working on this project.
-
 # eslint-plugin-css-modules
 
 [![Build Status](https://travis-ci.org/atfzl/eslint-plugin-css-modules.svg?branch=master)](https://travis-ci.org/atfzl/eslint-plugin-css-modules)
