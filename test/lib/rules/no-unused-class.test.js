@@ -359,4 +359,11 @@ describe('no-unused-class', function () {
       },
     ].map((testCase) => addFilenameOption(testCase)),
   });
+
+  ruleTester.run('no-unused-class', rule, {
+    valid: [
+    ].map((testCase) => addFilenameOption(testCase)),
+    invalid: [
+    ].map((testCase) => addFilenameOption(testCase)),
+  });
 });
