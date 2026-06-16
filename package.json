@@ -33,6 +33,10 @@
     "type": "git",
     "url": "git://github.com/atfzl/eslint-plugin-css-modules.git"
   },
+  "homepage": "https://github.com/atfzl/eslint-plugin-css-modules#readme",
+  "bugs": {
+    "url": "https://github.com/atfzl/eslint-plugin-css-modules/issues"
+  },
   "license": "MIT",
   "peerDependencies": {
     "eslint": ">=2.0.0"
